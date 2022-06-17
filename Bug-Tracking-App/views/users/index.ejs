@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/login.css">
+    </head>
+    <body>
+        <div class="container">
+            <nav><h1>nav bar</h1>
+            <h2>user Logged in</h2></nav>
+        <div class="container-content">
+        <div class="navbar">
+            <ul>
+                <a href="http://localhost:3000/bug/"><li><h2>View Bugs</h2></li></a>
+                <li><h2><a href="http://localhost:3000/bug/Create/62a327bbc2b8af1251864515">Create Bug</a></h2></li>
+                <li><h2><a href="http://localhost:3000/user/Create/62a327bbc2b8af1251864515">Create User</a></h2></li>
+                
+                <li>View Users</li>
+                <li>profile</li>
+                <li>log out</li>
+            </ul>
+        </div>
+        <div class="mainContent">
+            <div class="contentFilters">
+                <h2>Filter</h2>
+                <input type="button" value="">
+            </div>
+            <div class="contentBugs">
+                <h1>Information on users</h1>
+                <% users.forEach(user => { %>
+                <div class="bug">
+                   <h2>Name: <%= user.name %></h2>
+                   <h3>email: <%= user.email %></h3>
+                   <h3>role: <%= user.role %></h3>
+                   <h3>Date Created: <%= user.dateCreated %></h3>
+                   <button>Edit</button>
+                   <form action="http://localhost:3000/user/<%=user._id%>?_method=Delete" method="post">
+                    <button type="submit">Delete</button>
+                   </form>
+                   
+                </div>
+                 <% }) %>
+            </div>
+        </div>
+    </div>
+        <footer><h3>Brendon O'Neill</h3></div>
+        </div>
+        
+        <script src="" async defer></script>
+    </body>
+</html>

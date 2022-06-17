@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/login.css">
+    </head>
+    <body>
+        <div class="container">
+            <nav><h1>nav bar</h1>
+            <h2>user Logged in</h2></nav>
+        <div class="container-content">
+        <div class="navbar">
+            <ul>
+                <a href="http://localhost:3000/bug/"><li><h2>View Bugs</h2></li></a>
+                <li><h2><a href="http://localhost:3000/bug/Create/62a3279d0e5fb86b4c166da1">Create Bugs</a></h2></li>
+                <li><a href="http://localhost:3000/user/">View Users</a></li>
+                <li>profile</li>
+                <li>log out</li>
+            </ul>
+        </div>
+        <div class="mainContent">
+            <div class="contentFilters">
+                <h2>Filter</h2>
+                <a href="http://localhost:3000/bug/filtered/62a3279d0e5fb86b4c166da1">Users Bugs</a>
+                <a href="http://localhost:3000/bug/filtered/public">public bugs</a>
+                <a href="http://localhost:3000/bug/">all bugs</a>
+            </div>
+            <div class="contentBugs">
+                <h1>Information on bugs</h1>
+                <% bugs.forEach(bug => { %>
+                <div class="bug">
+                   <h2>Name: <%= bug.bugName %></h2>
+                   <h3>Des: <%= bug.bugDes %></h3>
+                   <h3>Code: <%= bug.bugCode %></h3>
+                   <h3>Project: <%= bug.bugProject %></h3>
+                   <h3>Creator: <%= bug.bugUserId.name %></h3>
+                   <h3>Date Created: <%= bug.dateBugCreated %></h3>
+                   <h3>Comments: <%= bug.Comments.length %></h3>
+                   <button>More Detail</button>
+                   <!--Needs to be changed to user logined in-->
+                   <% if(bug.bugUserId.name === "John") { %>
+                   <button> <a href="http://localhost:3000/bug/Update/<%=bug._id%>">test</a></button>
+                   <form action="http://localhost:3000/bug/<%=bug._id%>?_method=Delete" method="post">
+                    <button type="submit">Delete</button>
+                   </form>
+                   <% }%>
+                </div>
+                 <% }) %>
+            </div>
+        </div>
+    </div>
+        <footer><h3>Brendon O'Neill</h3></div>
+        </div>
+        
+        <script src="" async defer></script>
+    </body>
+</html>

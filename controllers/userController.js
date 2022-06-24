@@ -8,10 +8,11 @@ const User = require("../models/userModel")
 exports.getAllUsers = async (req, res) => {
 
     try {
+        const currentUser = req.LogInUser
         const users = await User.find();
         
         res.status(201).render('users/index',{
-        users});
+        users,currentUser});
 
         
 
@@ -27,6 +28,7 @@ exports.getAllUsers = async (req, res) => {
 exports.getOnlyAdmin = async (req, res) => {
 
     try {
+        const currentUser = req.LogInUser
         const users = await User.find().where({role: "admin"});
         
         res.status(201).render('users/index',{
@@ -47,6 +49,7 @@ exports.getOnlyAdmin = async (req, res) => {
 exports.getOnlyUser = async (req, res) => {
 
     try {
+        const currentUser = req.LogInUser
         const users = await User.find().where({role: "user"});
         
         res.status(201).render('users/index',{
@@ -68,6 +71,7 @@ exports.getOnlyUser = async (req, res) => {
 exports.getUser = async (req, res) => {
 
     try {
+        const currentUser = req.LogInUser
         const user = await User.findById(req.params.id);
         
         res.status(201).json({
@@ -89,6 +93,7 @@ exports.getUser = async (req, res) => {
 exports.test2 = async (req, res) => {
 
     try {
+        const currentUser = req.LogInUser
         const user = await User.findById(req.params.id);
         console.log(user)
         res.status(201).render('users/createUser',{user});
@@ -107,7 +112,14 @@ exports.createUser = async (req, res) => {
     
     
     try {
-        await User.create(req.body);
+        const currentUser = req.LogInUser
+        await User.create({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+        passwordConfirm: req.body.passwordConfirm,
+        role: req.body.role
+        });
         res.status(201).redirect('http://localhost:3000/user');
     }
     catch(err){
@@ -123,6 +135,7 @@ exports.updateUser = async (req, res) => {
     
     
     try {
+        const currentUser = req.LogInUser
         const user = await User.findByIdAndUpdate(req.params.id,req.body, {new:true});
 
         res.status(201).json({
@@ -144,6 +157,7 @@ exports.updateUser = async (req, res) => {
 
 exports.deleteUser = async (req, res) => {
     try {
+        const currentUser = req.LogInUser
         await User.findByIdAndDelete(req.params.id);
         res.status(201).redirect('http://localhost:3000/user');
 
@@ -160,10 +174,10 @@ exports.deleteUser = async (req, res) => {
 exports.profile = async (req, res) => {
 
     try {
+        const currentUser = req.LogInUser
         const user = await User.findById(req.params.id);
-        
         res.status(201).render('users/profile',{
-            user
+            user, currentUser
             });
 
     }

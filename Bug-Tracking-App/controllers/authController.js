@@ -5,41 +5,41 @@ const User = require("../models/userModel");
 const Bug = require("../models/bugModel");
 require('dotenv').config()
 
-
-const signToken = id => {
+//This creates a JWT token
+const signJWTToken = id => {
     return jwt.sign({ id }, process.env.JWT_PASSWORD, {expiresIn: process.env.JWT_EXPIRED});
 }
 
-exports.signup = async (req, res, next) => {
-    const newUser = await User.create({
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-        passwordConfirm: req.body.passwordConfirm,
-        role: req.body.role
-})
-
+const createCookieToken = (user, statusCode, res) => {
+    const token = signJWTToken(user._id)
+    const cookieOptions = {
+      expires: new Date(
+        Date.now() + 24 * 60 * 60 * 1000
+      ),
+      httpOnly: true
+    };
+    //if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
+  
+    res.cookie('jwt', token, cookieOptions);
+  
+    // Remove password from output
+    user.password = undefined;
+  
     
-    const token = signToken(newUser._id)
+  };
 
-    res.status(201).json({
-        status: 'success',
-        token,
-        data:{
-            user: newUser
-        }
-    });
-}
 
+
+//This checks the users username and password before given them a token
 exports.loginIn = async (req, res, next) => {
    
    try{
     const {email, password} = req.body;
-
+    console.log(req.body)
 
     if(!email || !password)
     {
-        throw new SyntaxError("failed")   
+        throw new SyntaxError("access denided") 
     }
 
     const user = await User.findOne({email}).select("+password");
@@ -48,30 +48,35 @@ exports.loginIn = async (req, res, next) => {
         throw new SyntaxError("access denided") 
     }
 
-    const token = signToken(user._id);
+    createCookieToken(user, 200, res)
 
-    res.status(200).json({
-        status: "success",
-        token
-    })
+    next()
    }
    catch(err)
    {
     console.error(err);
-   }
-   
-    
+   }   
 }
 
+//This is when the user logs out 
+exports.logout = (req, res) => {
+    res.cookie('jwt', 'loggedout', {
+      expires: new Date(Date.now() + 10 * 1000),
+      httpOnly: true
+    });
+    res.status(200).render("login/login")
+  };
 
+
+//This makes sure the user is logged in before they can use the application 
 exports.loginedCheck = async(req, res, next) => {
     
     try{
         //Check if users has a token
         let token
-        if(req.headers.authorization && req.headers.authorization.startsWith('Bearer'))
+        if(req.cookies.jwt)
         {
-            token = req.headers.authorization.split(' ')[1];
+            token = req.cookies.jwt;
         }
         if(!token)
         {
@@ -99,26 +104,30 @@ exports.loginedCheck = async(req, res, next) => {
     
 }
 
+
+// This checks the role of the user as admin can only view and update users
 exports.levelOfLogin = (...admin) => {
     try{
-
-    
-    return (req, res, next) => 
-    {
-        if(!admin.includes(req.LogInUser.role))
+        return (req, res, next) => 
         {
-            throw new SyntaxError("access denided") 
+            if(!admin.includes(req.LogInUser.role))
+            {
+                throw new SyntaxError("access denided") 
+            }
+            next()
         }
-        next()
-    }
     
     }
     catch(err)
     {
         console.error(err);
     }
-
 }
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//look into it
 
 exports.bugCreator = async(req, res, next) => {
 
@@ -139,4 +148,16 @@ exports.bugCreator = async(req, res, next) => {
     {
         console.error(err);
     }
+}
+
+// This is a sign up probably will be deleted
+exports.signup = async (req, res, next) => {
+    const newUser = await User.create({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+        passwordConfirm: req.body.passwordConfirm,
+        role: req.body.role
+})
+
 }

@@ -17,7 +17,7 @@
             <div class="container-fluid">
               <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-bug" viewBox="0 0 16 16">
                 <path d="M4.355.522a.5.5 0 0 1 .623.333l.291.956A4.979 4.979 0 0 1 8 1c1.007 0 1.946.298 2.731.811l.29-.956a.5.5 0 1 1 .957.29l-.41 1.352A4.985 4.985 0 0 1 13 6h.5a.5.5 0 0 0 .5-.5V5a.5.5 0 0 1 1 0v.5A1.5 1.5 0 0 1 13.5 7H13v1h1.5a.5.5 0 0 1 0 1H13v1h.5a1.5 1.5 0 0 1 1.5 1.5v.5a.5.5 0 1 1-1 0v-.5a.5.5 0 0 0-.5-.5H13a5 5 0 0 1-10 0h-.5a.5.5 0 0 0-.5.5v.5a.5.5 0 1 1-1 0v-.5A1.5 1.5 0 0 1 2.5 10H3V9H1.5a.5.5 0 0 1 0-1H3V7h-.5A1.5 1.5 0 0 1 1 5.5V5a.5.5 0 0 1 1 0v.5a.5.5 0 0 0 .5.5H3c0-1.364.547-2.601 1.432-3.503l-.41-1.352a.5.5 0 0 1 .333-.623zM4 7v4a4 4 0 0 0 3.5 3.97V7H4zm4.5 0v7.97A4 4 0 0 0 12 11V7H8.5zM12 6a3.989 3.989 0 0 0-1.334-2.982A3.983 3.983 0 0 0 8 2a3.983 3.983 0 0 0-2.667 1.018A3.989 3.989 0 0 0 4 6h8z"/>
-              </svg>
+              </svg><h1>Bug Tracker</h1>
               <span class="navbar-brand mb-0 h1"><%= currentUser.name %> Logged In </span>
             </div>
           </nav>
@@ -31,12 +31,12 @@
                       <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-person" viewBox="0 0 16 16">
                         <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
                       </svg>
-                      <a href="http://localhost:3000/user/profile/<%= currentUser.id%>"> Profile</a>
+                      <a href="http://localhost:3000/user/profile/<%= currentUser.id %>"> Profile</a>
                     </div>
                   </div>
 
                   <div class="nav-links">
-                    <% if(currentUser.role === "admin") { %>
+                    <% if(admin === true) { %>
                     <div class="nav-link-container">
                       <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-person-lines-fill" viewBox="0 0 16 16"> 
                         <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z"/>
@@ -48,7 +48,7 @@
                         <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
                         <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
                       </svg>
-                      <a href="http://localhost:3000/user/Create/<%= currentUser.id%>">Create Users</a>
+                      <a href="http://localhost:3000/user/">Create Users</a>
                     </div>
                     <% }%>
                     <div class="nav-link-container">
@@ -69,7 +69,7 @@
                         <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                         <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
                       </svg>
-                      <a href="http://localhost:3000/user/logout">Log Out</a>
+                      <a href="http://localhost:3000/signin">Log Out</a>
                     </div>
                   </div>
                 </div>
@@ -77,42 +77,14 @@
 
 
                   
-                    <div class="contentFilters">
-                      <form action="http://localhost:3000/bug/filter/" id="bugForm">
-                      <label for="filter">Filter:</label>
-                      <select id="filter" name="filterlist">
-                        <option value="userbug">User Bugs</option>
-                        <option value="public">Public Bugs</option>
-                        <option value="allbugs">All Bugs</option>
-                      </select>
-                      <label for="sort">Sort:</label>
-                      <select id="sort" name="sortlist">
-                        <option value="volvo">none</option>
-                        <option value="saab">Importance</option>
-                        <option value="opel">BuGS Name</option>
-                        <option value="opel">Creator</option>
-                      </select>
-                      
-                        <input type="submit">
-                      </form>
-
-                        
-                    </div>
+                    
                     <div class="contentBugs">
-                        <h1>Information on users</h1>
-                        <% users.forEach(user => { %>
-                        <div class="bug">
-                           <h3><%= user.name %></h3>
-                           <b><p><i class="bi bi-envelope"></i> <%= user.email %></p></b>
-                           <p class="bug-styles"><i class="bi bi-person"> </i><%= user.role %></p>
-                           <h3><%= user.dateCreated %></h3>
-                           <button><i class="bi bi-pencil"></i> Edit</button>
-                           <form action="http://localhost:3000/user/<%=user._id%>?_method=Delete" method="post">
-                            <button type="submit"><i class="bi bi-trash"></i> Delete</button>
-                           </form>
-                           
-                        </div>
-                         <% }) %>
+                        <h2>Bug Name</h2>
+                       <p><%= user.name %></p>
+                       <h2>Creator</h2>
+                       <p><%= user.email %></p>
+                       <h2>Description</h2>
+                       <p><%= user.role %></p>
                     </div>
   
 

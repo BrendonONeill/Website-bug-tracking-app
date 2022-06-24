@@ -10,7 +10,7 @@ const app = require('./app');
 //    process.env.DATABASE_PASSWORD
 //  );
 /////////////////////////
-mongoose.connect( () =>{
+mongoose.connect('', () =>{
     console.log("Connected")
 }, e => console.log(e));
 

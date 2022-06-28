@@ -49,7 +49,7 @@ exports.loginIn = async (req, res, next) => {
     }
 
     createCookieToken(user, 200, res)
-
+    console.log('token created')
     next()
    }
    catch(err)
@@ -99,10 +99,25 @@ exports.loginedCheck = async(req, res, next) => {
 
         console.error(err);
     }
+}
+//This is created to give the jwt time to be set up in the cookie before it it checked by the logined check
+exports.justloggedin = async(req, res) => {
+    
+    try{
+        res.redirect('../bug/')
+    }
+    catch(err)
+    {
+
+        console.error(err);
+    }
     
  
     
 }
+
+
+
 
 
 // This checks the role of the user as admin can only view and update users
@@ -148,16 +163,4 @@ exports.bugCreator = async(req, res, next) => {
     {
         console.error(err);
     }
-}
-
-// This is a sign up probably will be deleted
-exports.signup = async (req, res, next) => {
-    const newUser = await User.create({
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-        passwordConfirm: req.body.passwordConfirm,
-        role: req.body.role
-})
-
 }

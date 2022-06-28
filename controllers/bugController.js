@@ -58,7 +58,7 @@ exports.testUpdate = async (req, res) => {
         console.log(testbug)
         console.log(testuser)
         res.status(201).render('bugs/updateBug',{
-            testbug,testuser
+            testbug,testuser,currentUser
             });
 
     }
@@ -78,7 +78,7 @@ exports.testDetails = async (req, res) => {
         console.log(testbug)
         console.log(testuser)
         res.status(201).render('bugs/bugInformation',{
-            testbug,testuser
+            testbug,testuser,currentUser
             });
 
     }
@@ -134,8 +134,8 @@ exports.test2 = async (req, res) => {
     try {
         const currentUser = req.LogInUser
         const user = await User.findById(req.params.id);
-        console.log(user)
-        res.status(201).render('bugs/createBug',{user});
+        console.log(currentUser)
+        res.status(201).render('bugs/createBug',{user,currentUser});
 
     }
     catch(err){

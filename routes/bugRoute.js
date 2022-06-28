@@ -23,7 +23,7 @@ router
 .get(authController.loginedCheck, bugController.UserBugs)
 
 router
-.route("/Create/:id")
+.route("/create/:id")
 .get(authController.loginedCheck, bugController.test2)
 
 

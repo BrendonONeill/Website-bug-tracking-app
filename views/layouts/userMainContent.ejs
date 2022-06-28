@@ -1,0 +1,51 @@
+<div class="container-fluid main-container">
+    <div class="row">
+<div class="col">
+
+
+                  
+    <div class="contentFilters">
+      <form action="http://localhost:3000/bug/filter/" id="bugForm">
+      <label for="filter">Filter:</label>
+      <select id="filter" name="filterlist">
+        <option value="userbug">User Bugs</option>
+        <option value="public">Public Bugs</option>
+        <option value="allbugs">All Bugs</option>
+      </select>
+      <label for="sort">Sort:</label>
+      <select id="sort" name="sortlist">
+        <option value="volvo">none</option>
+        <option value="saab">Importance</option>
+        <option value="opel">BuGS Name</option>
+        <option value="opel">Creator</option>
+      </select>
+      
+        <input type="submit">
+      </form>
+
+        
+    </div>
+    <div class="contentBugs">
+        <h1>Information on users</h1>
+        <% users.forEach(user => { %>
+        <div class="bug">
+           <h3><%= user.fname %></h3>
+           <b><p><i class="bi bi-envelope"></i> <%= user.email %></p></b>
+           <p class="bug-styles"><i class="bi bi-person"> </i><%= user.role %></p>
+           <h3><%= user.dateCreated.toLocaleDateString('en-us', {year: 'numeric', month: 'long', day: 'numeric'}) %></h3>
+           <% if(user.id !== currentUser.id){ %>
+           <div class="bug-buttons">
+           <button class="custom-button"><a href="http://localhost:3000/user/Update/<%=user._id%>"><i class="bi bi-pencil"></i> Edit</a></button>
+           <form action="http://localhost:3000/user/<%=user._id%>?_method=Delete" method="post">
+            <button class="custom-button" type="submit"><i class="bi bi-trash"></i> Delete</button>
+           </form>
+           </div>
+           <% } %>
+        </div>
+         <% }) %>
+    </div>
+
+    </div>
+
+    </div>
+    </div>

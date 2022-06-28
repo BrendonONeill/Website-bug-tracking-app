@@ -95,8 +95,7 @@ exports.test2 = async (req, res) => {
     try {
         const currentUser = req.LogInUser
         const user = await User.findById(req.params.id);
-        console.log(user)
-        res.status(201).render('users/createUser',{user});
+        res.status(201).render('users/createUser',{user, currentUser});
 
     }
     catch(err){
@@ -113,8 +112,10 @@ exports.createUser = async (req, res) => {
     
     try {
         const currentUser = req.LogInUser
+        console.log(req.body)
         await User.create({
-        name: req.body.name,
+        fname: req.body.fname,
+        lname: req.body.lname,
         email: req.body.email,
         password: req.body.password,
         passwordConfirm: req.body.passwordConfirm,

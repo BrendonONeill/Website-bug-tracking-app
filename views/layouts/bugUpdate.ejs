@@ -1,0 +1,44 @@
+<div class="container-fluid main-container">
+    <div class="row">
+        
+        <div class="col-9 bug-col">
+
+
+          
+          
+            <div class="contentBugs">
+                
+
+            <form action="http://localhost:3000/bug/<%= testbug.id %>?_method=PUT" method="POST">
+                <label for="">Name</label>
+                <input class="custom-input" type="text" name="bugName" value="<%=testbug.bugName%>">
+                <label for="">Description</label>
+                <input class="custom-input" type="text" name="bugDes" value="<%=testbug.bugDes%>">
+                <label for="">Project</label>
+                <input class="custom-input" type="text" name="bugProject" value="<%=testbug.bugProject%>">
+                <label for="">Code</label>
+                <input class="custom-input" type="text" name="bugCode" value="<%=testbug.bugCode%>">
+                <label for="">Importance</label>
+                <input class="custom-input" type="number" name="bugImportance" value="<%=testbug.bugImportance%>">
+                <button type="submit">Submit</button>
+            </form>
+                
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+</div>

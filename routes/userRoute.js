@@ -9,11 +9,16 @@ router.get('/logout', authController.logout);
 router.get('/login', (req, res) => {
     res.render("login/login")
 })
-router.post('/login', authController.loginIn, authController.loginedCheck, bugController.test);
+router.post('/login', authController.loginIn, authController.justloggedin);
 
 router
-.route("/Create/:id")
-.get( userController.test2)
+.route("/create/:id")
+.get( authController.loginedCheck, userController.test2)
+
+router
+.route("/update/:id")
+//Need to create an update function and make sure to hash the password
+.get()
 
 router
 .route("/")

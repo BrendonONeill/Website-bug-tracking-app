@@ -1,0 +1,40 @@
+<div class="container-fluid main-container">
+    <div class="row">
+        
+        <div class="col">
+
+            <div class="contentBugs">
+                <form action="http://localhost:3000/bug/<%= user.id %>" method="post">
+                    <label for="">Name</label>
+                    <input class="custom-input" type="text" name="bugName">
+                    <label for="">Description</label>
+                    <input class="custom-input" type="text" name="bugDes">
+                    <label for="">Project</label>
+                    <input class="custom-input" type="text" name="bugProject">
+                    <label for="">Code</label>
+                    <input class="custom-input" type="text" name="bugCode">
+                    <label for="">Importance</label>
+                    <input class="custom-input" type="number" name="bugImportance">
+                    <button type="submit">Submit</button>
+                    <button><a href="http://localhost:3000/bug">Cancel</a></button>
+                </form>
+                
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+</div>

@@ -5,6 +5,47 @@ const User = require("../models/userModel");
 const Bug = require("../models/bugModel");
 require('dotenv').config()
 
+
+//This checks the users username and password before given them a token
+exports.loginIn = async (req, res, next) => {
+   
+    try{
+     const {email, password} = req.body;
+     if(!email || !password)
+     {
+         throw new SyntaxError("access denided") 
+     }
+     const user = await User.findOne({email}).select("+password");
+     if (!user || !(await user.correctPassword(password, user.password)))
+     {
+         throw new SyntaxError("access denided") 
+     }
+     createCookieToken(user, 200, res)
+     console.log('token created')
+     next()
+    }
+    catch(err)
+    {
+     console.error(err);
+    }   
+ }
+
+ //This is created to give the jwt time to be set up in the cookie before it it checked by the logined check
+exports.justloggedin = async(req, res) => {
+    
+    try{
+        res.redirect('../bug/')
+    }
+    catch(err)
+    {
+
+        console.error(err);
+    }
+    
+ 
+    
+}
+
 //This creates a JWT token
 const signJWTToken = id => {
     return jwt.sign({ id }, process.env.JWT_PASSWORD, {expiresIn: process.env.JWT_EXPIRED});
@@ -27,46 +68,6 @@ const createCookieToken = (user, statusCode, res) => {
   
     
   };
-
-
-
-//This checks the users username and password before given them a token
-exports.loginIn = async (req, res, next) => {
-   
-   try{
-    const {email, password} = req.body;
-    console.log(req.body)
-
-    if(!email || !password)
-    {
-        throw new SyntaxError("access denided") 
-    }
-
-    const user = await User.findOne({email}).select("+password");
-    if (!user || !(await user.correctPassword(password, user.password)))
-    {
-        throw new SyntaxError("access denided") 
-    }
-
-    createCookieToken(user, 200, res)
-    console.log('token created')
-    next()
-   }
-   catch(err)
-   {
-    console.error(err);
-   }   
-}
-
-//This is when the user logs out 
-exports.logout = (req, res) => {
-    res.cookie('jwt', 'loggedout', {
-      expires: new Date(Date.now() + 10 * 1000),
-      httpOnly: true
-    });
-    res.status(200).render("login/login")
-  };
-
 
 //This makes sure the user is logged in before they can use the application 
 exports.loginedCheck = async(req, res, next) => {
@@ -100,25 +101,15 @@ exports.loginedCheck = async(req, res, next) => {
         console.error(err);
     }
 }
-//This is created to give the jwt time to be set up in the cookie before it it checked by the logined check
-exports.justloggedin = async(req, res) => {
-    
-    try{
-        res.redirect('../bug/')
-    }
-    catch(err)
-    {
 
-        console.error(err);
-    }
-    
- 
-    
-}
-
-
-
-
+//This is when the user logs out 
+exports.logout = (req, res) => {
+    res.cookie('jwt', 'loggedout', {
+      expires: new Date(Date.now() + 10 * 1000),
+      httpOnly: true
+    });
+    res.status(200).render("login/login")
+  };
 
 // This checks the role of the user as admin can only view and update users
 exports.levelOfLogin = (...admin) => {
@@ -139,28 +130,3 @@ exports.levelOfLogin = (...admin) => {
     }
 }
 
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//look into it
-
-exports.bugCreator = async(req, res, next) => {
-
-    try {
-        let bugId = req.params.id;
-        const bugObject = await Bug.findById(bugId);
-        console.log((bugObject.bugUserId.toString()) === (req.LogInUserId))
-        if((bugObject.bugUserId.toString()) !== (req.LogInUserId))
-        {
-            throw new SyntaxError("access denided")
-        }
-        console.log("cat")
-        next()
-        
-
-    } 
-    catch (err) 
-    {
-        console.error(err);
-    }
-}

@@ -9,17 +9,17 @@
             <div class="contentBugs">
                 
 
-                <form action="http://localhost:3000/user/create" method="post">
-                    <label for="">First Name</label>
-                    <input class="custom-input" type="text" name="fname">
+                <form action="http://localhost:3000/user/update/<%= updateUser.id %>?_method=PUT" method="POST">
+                    <label for="firstname">First Name</label>
+                    <input class="custom-input" type="text" name="fname" value="<%= updateUser.fname%>">
                     <label for="">Last Name</label>
-                    <input class="custom-input" type="text" name="lname">
+                    <input class="custom-input" type="text" name="lname" value="<%= updateUser.lname%>">
                     <label for="">Email</label>
-                    <input class="custom-input" type="text" name="email">
+                    <input class="custom-input" type="email" name="email" value="<%= updateUser.email%>">
                     <label for="">Password</label>
-                    <input class="custom-input" type="text" name="password">
+                    <input class="custom-input" type="password" name="password" >
                     <label  for="">PasswordConfirm</label>
-                    <input class="custom-input" type="text" name="passwordConfirm">
+                    <input class="custom-input" type="password" name="passwordConfirm" value="<%= updateUser.passwordConfirm%>">
                     <label for="role">Role</label>
                     <select class="custom-input" name="role" id="role">
                         <option value="admin">admin</option>

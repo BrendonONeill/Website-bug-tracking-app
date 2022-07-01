@@ -6,18 +6,20 @@
           
             
             <div class="contentBugs">
+                <div class="info-style">
                 <h2>Bug Name</h2>
-               <p><%= testbug.bugName %></p>
+               <p><%= bug.bugName %></p>
                <h2>Creator</h2>
-               <p><%= testuser.fname %> <%= testuser.fname %></p>
+               <p><%= user.fname %> <%= user.fname %></p>
                <h2>Description</h2>
-               <p><%= testbug.bugDes %></p>
+               <p><%= bug.bugDes %></p>
                <h2>Project</h2>
-               <p><%= testbug.bugProject %></p>
+               <p><%= bug.bugProject %></p>
                <h2>Code</h2>
-               <p><%= testbug.bugCode %></p>
+               <p><%= bug.bugCode %></p>
                <h2>Date Created</h2>
-               <p><%= testbug.dateBugCreated%></p>
+               <p><%= bug.dateBugCreated.toLocaleDateString('en-us', {year: 'numeric', month: 'long', day: 'numeric'}) %></p>
+               </div>
             </div>
         </div>
     </div>

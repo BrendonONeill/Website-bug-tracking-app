@@ -22,7 +22,7 @@ const userSchema = new Schema({
     {
         type: String,
         required: true,
-        minlength: 10,
+        minlength: 3,
         select: false
     },
     passwordConfirm:
@@ -30,6 +30,8 @@ const userSchema = new Schema({
         type: String,
         required: true,
         validate: {validator: function(pas){
+            console.log(pas)
+            console.log(this.password)
             return pas === this.password
         }, message:"Passwords are not the same"}
     },
@@ -48,8 +50,7 @@ const userSchema = new Schema({
 });
 
 userSchema.pre("save", async function(next){
-    if(!this.isModified('password')) return next();
-
+    if(this.password.startsWith('$') && this.password.length > 20) return next();
     this.password = await bcrypt.hash(this.password, 12);
     this.passwordConfirm = undefined;
     next();

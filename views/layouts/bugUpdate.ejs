@@ -1,7 +1,7 @@
 <div class="container-fluid main-container">
     <div class="row">
         
-        <div class="col-9 bug-col">
+        <div class="col">
 
 
           
@@ -9,17 +9,21 @@
             <div class="contentBugs">
                 
 
-            <form action="http://localhost:3000/bug/<%= testbug.id %>?_method=PUT" method="POST">
+            <form action="http://localhost:3000/bug/update/<%= bug.id %>?_method=PUT" method="POST">
                 <label for="">Name</label>
-                <input class="custom-input" type="text" name="bugName" value="<%=testbug.bugName%>">
+                <input class="custom-input" type="text" name="bugName" value="<%=bug.bugName%>">
                 <label for="">Description</label>
-                <input class="custom-input" type="text" name="bugDes" value="<%=testbug.bugDes%>">
+                <input class="custom-input" type="text" name="bugDes" value="<%=bug.bugDes%>">
                 <label for="">Project</label>
-                <input class="custom-input" type="text" name="bugProject" value="<%=testbug.bugProject%>">
+                <input class="custom-input" type="text" name="bugProject" value="<%=bug.bugProject%>">
                 <label for="">Code</label>
-                <input class="custom-input" type="text" name="bugCode" value="<%=testbug.bugCode%>">
-                <label for="">Importance</label>
-                <input class="custom-input" type="number" name="bugImportance" value="<%=testbug.bugImportance%>">
+                <input class="custom-input" type="text" name="bugCode" value="<%=bug.bugCode%>">
+                <label for="bugImportance">Bug Level of Importance:</label>
+                    <select class="custom-input" name="bugImportance" id="bugImportance">
+                        <option value="low">low</option>
+                        <option value="medium">medium</option>
+                        <option value="high">high</option>
+                    </select>
                 <button type="submit">Submit</button>
             </form>
                 

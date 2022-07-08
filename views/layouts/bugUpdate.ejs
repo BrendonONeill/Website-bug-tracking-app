@@ -6,27 +6,30 @@
 
           
           
-            <div class="contentBugs">
-                
-
-            <form action="http://localhost:3000/bug/update/<%= bug.id %>?_method=PUT" method="POST">
-                <label for="">Name</label>
-                <input class="custom-input" type="text" name="bugName" value="<%=bug.bugName%>">
-                <label for="">Description</label>
-                <input class="custom-input" type="text" name="bugDes" value="<%=bug.bugDes%>">
-                <label for="">Project</label>
-                <input class="custom-input" type="text" name="bugProject" value="<%=bug.bugProject%>">
-                <label for="">Code</label>
-                <input class="custom-input" type="text" name="bugCode" value="<%=bug.bugCode%>">
-                <label for="bugImportance">Bug Level of Importance:</label>
+            <div class="form-Conatiner">
+                <form action="http://localhost:3000/bug/update/<%= bug.id %>?_method=PUT" method="POST">
+                    <label class="label-styles" for="bugName">Name</label>
+                    <input class="custom-input" type="text" name="bugName" required placeholder="Login bug" value="<%=bug.bugName%>" maxlength="30">
+                    <label class="label-styles" for="bugDescription">Description</label>
+                    <textarea class="custom-input" type="text" name="bugDes" ro required placeholder="Bug Description" rows="4" cols="50" maxlength="250"><%=bug.bugDes%></textarea>
+                    <label class="label-styles" for="bugProject">Project</label>
+                    <input class="custom-input" type="text" name="bugProject" required placeholder="Bug Tracker" value="<%=bug.bugProject%>" maxlength="30">
+                    <label class="label-styles" for="bugCode">Code</label>
+                    <input class="custom-input" type="text" name="bugCode" required placeholder="Kotlin" value="<%=bug.bugCode%>" maxlength="30">
+                    <label class="label-styles" for="bugImportance">Bug Level of Importance</label>
                     <select class="custom-input" name="bugImportance" id="bugImportance">
                         <option value="low">low</option>
                         <option value="medium">medium</option>
                         <option value="high">high</option>
                     </select>
-                <button type="submit">Submit</button>
-            </form>
-                
+                    <label class="label-styles" for="bugPrivate">Bug viewability</label>
+                    <select class="custom-input" name="bugPrivate" id="bugPrivate">
+                        <option value="public" >Public</option>
+                        <option value="private" >Private</option>
+                    </select>
+                    <button class="button-styles" type="submit">Submit</button>
+                    <button class="button-styles button-spacing"><a href="http://localhost:3000/bug">Cancel</a></button>
+                </form>
             </div>
 
 
@@ -46,3 +49,6 @@
         </div>
     </div>
 </div>
+
+
+

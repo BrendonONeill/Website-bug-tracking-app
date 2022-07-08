@@ -5,39 +5,38 @@
 
                   
     <div class="contentFilters">
-      <form action="http://localhost:3000/bug/filter/" id="bugForm">
-      <label for="filter">Filter:</label>
-      <select id="filter" name="filterlist">
-        <option value="userbug">User Bugs</option>
-        <option value="public">Public Bugs</option>
-        <option value="allbugs">All Bugs</option>
+      <form action="http://localhost:3000/user/filter/" id="bugForm">
+      <label for="filter"><img src="/filter.svg" alt=""></label>
+      <select class="custom-filter" id="filter" name="filterlist">
+        <option value="allUsers">All Users</option>
+        <option value="users">Users</option>
+        <option value="admins">Admins</option>
       </select>
-      <label for="sort">Sort:</label>
-      <select id="sort" name="sortlist">
-        <option value="volvo">none</option>
-        <option value="saab">Importance</option>
-        <option value="opel">BuGS Name</option>
-        <option value="opel">Creator</option>
+      <label for="sort"><img src="/sort.svg" alt=""></label>
+      <select class="custom-filter" id="sort" name="sortlist">
+        <option value="none">None</option>
+        <option value="name">Name</option>
+        <option value="date">Date</option>
+        <option value="role">Role</option>
       </select>
-      
-        <input type="submit">
+        <input class="button-styles" type="submit">
       </form>
 
         
     </div>
-    <div class="contentBugs">
-        <h1>Information on users</h1>
+    <div class="bugsContainer">
+        <h1>Users</h1>
         <% users.forEach(user => { %>
-        <div class="bug">
-           <h3><%= user.fname %></h3>
+        <div class="card-styles">
+           <h3 class="card-heading"><%= user.fname %></h3>
            <b><p><i class="bi bi-envelope"></i> <%= user.email %></p></b>
-           <p class="bug-styles"><i class="bi bi-person"> </i><%= user.role %></p>
-           <h3><%= user.dateCreated.toLocaleDateString('en-us', {year: 'numeric', month: 'long', day: 'numeric'}) %></h3>
+           <p class="badge-styles"><i class="bi bi-person"> </i><%= user.role %></p>
+           <h3><i class="bi bi-calendar3"> </i>  <%= user.dateCreated.toLocaleDateString('en-us', {year: 'numeric', month: 'long', day: 'numeric'}) %></h3>
            <% if(user.id !== currentUser.id){ %>
-           <div class="bug-buttons">
-           <button class="custom-button"><a href="http://localhost:3000/user/update/<%=user._id%>"><i class="bi bi-pencil"></i> Edit</a></button>
+           <div class="user-buttons">
+           <button class="button-styles"><a href="http://localhost:3000/user/update/<%=user._id%>"><i class="bi bi-pencil"></i> Edit</a></button>
            <form action="http://localhost:3000/user/delete/<%=user._id%>?_method=Delete" method="post">
-            <button class="custom-button" type="submit"><i class="bi bi-trash"></i> Delete</button>
+            <button class="button-styles delete-button button-spacing" type="submit"><i class="bi bi-trash"></i> Delete</button>
            </form>
            </div>
            <% } %>

@@ -6,20 +6,20 @@
 
           
           
-            <div class="contentBugs">
+            <div class="form-Conatiner">
                 
 
                 <form action="http://localhost:3000/user/create" method="post">
                     <label for="">First Name</label>
-                    <input class="custom-input" type="text" name="fname">
+                    <input class="custom-input" type="text" name="fname" maxlength="20" required>
                     <label for="">Last Name</label>
-                    <input class="custom-input" type="text" name="lname">
+                    <input class="custom-input" type="text" name="lname" maxlength="20" required>
                     <label for="">Email</label>
-                    <input class="custom-input" type="text" name="email">
+                    <input class="custom-input" type="email" name="email" maxlength="30" required>
                     <label for="">Password</label>
-                    <input class="custom-input" type="text" name="password">
+                    <input class="custom-input" type="text" name="password" minlength="5" maxlength="20" required>
                     <label  for="">PasswordConfirm</label>
-                    <input class="custom-input" type="text" name="passwordConfirm">
+                    <input class="custom-input" type="text" name="passwordConfirm" minlength="5" maxlength="20" required>
                     <label for="role">Role</label>
                     <select class="custom-input" name="role" id="role">
                         <option value="admin">admin</option>

@@ -136,6 +136,91 @@ exports.profile = async (req, res) => {
     }
 }
 
+//Filter and Sort
+exports.filterAndSort = async (req, res) => {
+
+    try {
+        const currentUser = req.LogInUser
+        const filterpick = req.query.filterlist
+        const sortpick = req.query.sortlist
+        if(filterpick === 'allUsers')
+        {
+            if(sortpick  === 'none')
+            {
+                users = await User.find();
+            }
+            else if(sortpick  === 'name')
+            {
+                users = await User.find().sort({fname: 1});
+            }
+            else if(sortpick  === 'date')
+            {
+                users = await User.find().sort({dateCreated: 1});
+            }
+            else if(sortpick  === 'role')
+            {
+                users = await User.find().sort({role: 1})
+            }
+            
+        }
+        else if(filterpick === 'admins')
+        {
+            if(sortpick  === 'none')
+            {
+                users = await User.find().where({role: 'admin'});
+            }
+            else if(sortpick  === 'name')
+            {
+                users = await User.find().where({role: 'admin'}).sort({fname: 1});
+            }
+            else if(sortpick  === 'date')
+            {
+                users = await User.find().where({role: 'admin'}).sort({dateCreated: 1});
+            }
+            else if(sortpick  === 'role')
+            {
+                users = await User.find().where({role: 'admin'}).sort({role: 1})
+            }
+            
+           
+        }
+        else if(filterpick === 'users')
+        {
+            if(sortpick  === 'none')
+            {
+                users = await User.find().where({role: 'user'});
+            }
+            else if(sortpick  === 'name')
+            {
+                users = await User.find().where({role: 'user'}).sort({fname: 1});
+            }
+            else if(sortpick  === 'date')
+            {
+                users = await User.find().where({role: 'user'}).sort({dateCreated: 1});
+            }
+            else if(sortpick  === 'role')
+            {
+                users = await User.find().where({role: 'user'}).sort({role: 1})
+            }
+            
+        }
+             res.status(201).render('users/index',{
+             users, currentUser
+             });
+
+    }
+    catch(err){
+        res.status(400).json({
+            status: 'Failed',
+            message: err
+        })
+    }
+}
+
+
+
+
+
 
 
 

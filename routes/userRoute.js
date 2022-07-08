@@ -38,7 +38,9 @@ router
 .route("/profile/:id")
 .get(authController.loginedCheck, userController.profile)
 
-
+router
+.route("/filter/")
+.get(authController.loginedCheck, userController.filterAndSort)
 
 
 

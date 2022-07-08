@@ -13,7 +13,9 @@ exports.loginIn = async (req, res, next) => {
      const {email, password} = req.body;
      if(!email || !password)
      {
-         throw new SyntaxError("access denided") 
+        req.local.errorEmail = 'Missing email'
+         throw new SyntaxError("access denided")
+         
      }
      const user = await User.findOne({email}).select("+password");
      if (!user || !(await user.correctPassword(password, user.password)))
@@ -27,6 +29,7 @@ exports.loginIn = async (req, res, next) => {
     catch(err)
     {
      console.error(err);
+     next()
     }   
  }
 

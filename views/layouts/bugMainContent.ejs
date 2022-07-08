@@ -2,42 +2,39 @@
     <div class="row">
       <div class="col">
 
-        <div class="contentFilters">
+        <div class="filterContainer">
           <form action="http://localhost:3000/bug/filter/" id="bugForm">
-          <label for="filter">Filter: </label>
-          <select id="filter" name="filterlist">
+          <label for="filter"><img src="/filter.svg" alt="filter"></label>
+          <select class="custom-filter" id="filter" name="filterlist">
             <option value="userbug">User Bugs</option>
             <option value="public">Public Bugs</option>
             <option value="allbugs" selected>All Bugs</option>
           </select>
-          <label for="sort">Sort: </label>
-          <select id="sort" name="sortlist">
-            <option value="none">none</option>
+          <label for="sort"><img src="/sort.svg" alt="sort"> </label>
+          <select class="custom-filter" id="sort" name="sortlist">
+            <option value="none">None</option>
             <option value="importance">Importance</option>
             <option value="bugName">Bug-Name</option>
             <option value="date">Date</option>
           </select>
-          
-            <input class="custom-button" type="submit">
+            <input class="button-styles" type="submit">
           </form>
-
-             <!--<h2>Filter</h2>
-            <a href="http://localhost:3000/bug/filtered/62a3279d0e5fb86b4c166da1">Users Bugs</a>
-            <a href="http://localhost:3000/bug/filtered/public">public bugs</a>
-            <a href="http://localhost:3000/bug/">all bugs</a>-->
         </div>
-        <div class="contentBugs">
+
+        <div class="bugsContainer">
             <% bugs.forEach(bug => { %>
-            <div class="bug">
+            <div class="card-styles">
               <div class="bug-information">
-               <h3 class="card-heading"><%= bug.bugName %></h3>
+                <div class="card-alert" style="<%= bug.bugImportance === 'low' ? 'background-color: green' : bug.bugImportance === 'medium' ? 'background-color: orange' : bug.bugImportance === 'high' ? 'background-color: rgb(192, 0, 0);' : '' %>">
+                
+                </div>
+               <h3 class="card-heading heading-card-style"><%= bug.bugName %></h3>
                
-               <p class="bug-styles"><i class="bi bi-folder"></i> <%= bug.bugProject %></p>
-               <p class="bug-styles"><i class="bi bi-code"></i> <%= bug.bugCode %></p>
+               <p class="badge-styles-main"><i class="bi bi-folder"></i> <%= bug.bugProject %></p>
+               <p class="badge-styles-main"><i class="bi bi-code"></i> <%= bug.bugCode %></p>
                
                <div>
-               <p class="bug-styles-comm" style=" <%= bug.bugImportance === 'low' ? 'background-color: pink' : bug.bugImportance === 'medium' ? 'background-color: orange' : bug.bugImportance === 'high' ? 'background-color: red' : '' %>"><i class="bi bi-exclamation-lg"></i> <%= bug.bugImportance %></p>
-               <p class="bug-styles-comm"><i class="bi bi-chat"></i> <%= bug.Comments.length %></p>
+               <p class="badge-styles"><i class="bi bi-chat"></i> <%= bug.Comments.length %></p>
               </div>
               <div class="person-date">
                 <h4><i class="bi bi-person"></i> <%= bug.bugUserId.fname %> <%= bug.bugUserId.lname[0] %></h4>
@@ -46,12 +43,11 @@
               </div>
 
                <div class="bug-buttons">
-               <button class="custom-button"><a href="http://localhost:3000/bug/bug-details/<%=bug._id%>"><i class="bi bi-info"></i> More Detail</a></button>
-               <!--Needs to be changed to user logined in-->
+               <button class="button-styles"><a href="http://localhost:3000/bug/bug-details/<%=bug._id%>"><i class="bi bi-info"></i> More Detail</a></button>
                <% if(bug.bugUserId.id === currentUser.id) { %>
-               <button class="custom-button"><a href="http://localhost:3000/bug/update/<%=bug._id%>"><i class="bi bi-pencil"></i>  Edit</a></button>
+               <button class="button-styles"><a href="http://localhost:3000/bug/update/<%=bug._id%>"><i class="bi bi-pencil"></i>  Edit</a></button>
                <form class="card-button" action="http://localhost:3000/bug/delete/<%=bug._id%>?_method=Delete" method="post">
-                <button class="custom-button" type="submit"><i class="bi bi-trash"></i> Delete</button>
+                <button class="button-styles delete-button" type="submit"><i class="bi bi-trash"></i> Delete</button>
                </form>
                <% }%>
               </div>

@@ -46,6 +46,14 @@ exports.createBug = async (req, res) => {
         console.log("Test Bug Created")
         const userId = await User.findById(req.params.id)
         req.body.bugUserId = userId
+        if(req.body.bugPrivate === 'public')
+        {
+            req.body.bugPrivate = false;
+        }
+        else
+        {
+            req.body.bugPrivate = true;
+        }
         await Bug.create(req.body);
         res.status(201).redirect('http://localhost:3000/bug');
     }
@@ -101,6 +109,14 @@ exports.updateBug = async (req, res) => {
     try {
         console.log("Test updated bug")
         const currentUser = req.LogInUser
+        if(req.body.bugPrivate === 'public')
+        {
+            req.body.bugPrivate = false;
+        }
+        else
+        {
+            req.body.bugPrivate = true;
+        }
         const bug = await Bug.findByIdAndUpdate(req.params.id,req.body, {new:true});
         await bug.save()
         res.status(201).redirect('http://localhost:3000/bug');
@@ -147,12 +163,9 @@ exports.deleteUsersBug = async (req, res,next) => {
 exports.filterAndSort = async (req, res) => {
 
     try {
-        console.log("Test 14 check.....")
         const currentUser = req.LogInUser
         const filterpick = req.query.filterlist
         const sortpick = req.query.sortlist
-        console.log(filterpick)
-        console.log(currentUser.id)
         if(filterpick === 'userbug')
         {
             if(sortpick  === 'none')
@@ -225,13 +238,6 @@ exports.filterAndSort = async (req, res) => {
         })
     }
 }
-
-
-
-
-
-
-
 
 
 

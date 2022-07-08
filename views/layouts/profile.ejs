@@ -2,16 +2,16 @@
 <div class="container-fluid main-container">
     <div class="row">
 <div class="col">              
-    <div class="contentBugs">
-        <div class="info-style">
+    <div class="card-container">
+        <div class="profile-style">
         <div class="info-style-header">
             <h1><%= user.fname %> <%= user.lname %></h1>
         </div>
         <div class="info-style-body">
        <p><%= user.email %></p>
        </div>
-       <p class="bug-styles-comm"><%= user.role %></p>
-       <p class="bug-styles-comm"><%= user.dateCreated.toLocaleDateString('en-us', {year: 'numeric', month: 'long', day: 'numeric'})  %></p>
+       <p class="badge-styles-main"><%= user.role %></p>
+       <p class="badge-styles-main"><%= user.dateCreated.toLocaleDateString('en-us', {year: 'numeric', month: 'long', day: 'numeric'})  %></p>
     </div>
     </div>
 </div>

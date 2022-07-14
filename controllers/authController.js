@@ -13,14 +13,14 @@ exports.loginIn = async (req, res, next) => {
      const {email, password} = req.body;
      if(!email || !password)
      {
-        req.local.errorEmail = 'Missing email'
-         throw new SyntaxError("access denided")
+
+         throw new SyntaxError("Please Enter Email/Password")
          
      }
      const user = await User.findOne({email}).select("+password");
      if (!user || !(await user.correctPassword(password, user.password)))
      {
-         throw new SyntaxError("access denided") 
+         throw new SyntaxError("Email or Password not valid") 
      }
      createCookieToken(user, 200, res)
      console.log('token created')
@@ -28,8 +28,8 @@ exports.loginIn = async (req, res, next) => {
     }
     catch(err)
     {
-     console.error(err);
-     next()
+        console.log(err)
+        next(err)
     }   
  }
 
@@ -65,6 +65,7 @@ const createCookieToken = (user, statusCode, res) => {
     //if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
   
     res.cookie('jwt', token, cookieOptions);
+    res.cookie('user', `${user.fname}.${user.lname[0]}`,cookieOptions);
   
     // Remove password from output
     user.password = undefined;
@@ -94,14 +95,14 @@ exports.loginedCheck = async(req, res, next) => {
         {
             throw new SyntaxError("access denided") 
         }
+        req.currentUser = req.cookies.user
         req.LogInUser = userInDataBase
-        req.LogInUserId = userInDataBase.id
         next();
     }
     catch(err)
     {
-
         console.error(err);
+        next(err)
     }
 }
 
@@ -111,6 +112,10 @@ exports.logout = (req, res) => {
       expires: new Date(Date.now() + 10 * 1000),
       httpOnly: true
     });
+    res.cookie('user', 'loggedout', {
+        expires: new Date(Date.now() + 10 * 1000),
+        httpOnly: true
+      });
     res.status(200).render("login/login")
   };
 

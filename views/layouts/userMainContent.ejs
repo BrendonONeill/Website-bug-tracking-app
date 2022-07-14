@@ -26,6 +26,9 @@
     </div>
     <div class="bugsContainer">
         <h1>Users</h1>
+        <% if(typeof message !== 'undefined'){ %>
+          <div class="error-message-form"><%= message %></div> 
+        <% } %>
         <% users.forEach(user => { %>
         <div class="card-styles">
            <h3 class="card-heading"><%= user.fname %></h3>

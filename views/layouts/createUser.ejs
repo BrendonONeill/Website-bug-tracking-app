@@ -8,7 +8,9 @@
           
             <div class="form-Conatiner">
                 
-
+                <% if(typeof message !== 'undefined'){ %>
+                    <div class="error-message-form"><%= message %></div> 
+                    <% } %>
                 <form action="http://localhost:3000/user/create" method="post">
                     <label for="">First Name</label>
                     <input class="custom-input" type="text" name="fname" maxlength="20" required>

@@ -139,7 +139,9 @@
 
 .form-Conatiner
 {
+    margin: auto;
     width: 100%;
+    max-width: 1200px;
     height: 80vh;
     background-color: #fff;
     border-radius: 20px;
@@ -393,6 +395,7 @@ footer
     align-items: center;
     justify-content: center;
     padding-left: 20px;
+    position: relative;
 }
 
 .custom-input-login
@@ -421,6 +424,30 @@ footer
     padding: 5px;
     color: white;
     cursor: pointer;
+}
+
+.error-message
+{
+    color: #fff;
+    background-color: red;
+    width: 100%;
+    padding: 20px;
+    font-weight: bold;
+    position: absolute;
+    top: -40%;
+    text-align: center;
+}
+
+.error-message-form
+{
+    color: #fff;
+    background-color: red;
+    width: 30%;
+    top: 0;
+    padding: 20px;
+    font-weight: bold;
+    position: absolute;
+    text-align: center;
 }
 
 

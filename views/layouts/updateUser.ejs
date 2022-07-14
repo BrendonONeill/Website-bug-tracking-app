@@ -6,7 +6,7 @@
 
           
           
-            <div class="contentBugs">
+            <div class="form-Conatiner">
                 
 
                 <form action="http://localhost:3000/user/update/<%= updateUser.id %>?_method=PUT" method="POST">
@@ -16,10 +16,11 @@
                     <input class="custom-input" type="text" name="lname" value="<%= updateUser.lname%>">
                     <label for="">Email</label>
                     <input class="custom-input" type="email" name="email" value="<%= updateUser.email%>">
+                    <p style="color: red;">*Leave both password fields empty if you dont want to change the password.</p>
                     <label for="">Password</label>
-                    <input class="custom-input" type="password" name="password" >
+                    <input class="custom-input" type="text" name="password" >
                     <label  for="">PasswordConfirm</label>
-                    <input class="custom-input" type="password" name="passwordConfirm" value="<%= updateUser.passwordConfirm%>">
+                    <input class="custom-input" type="text" name="passwordConfirm">
                     <label for="role">Role</label>
                     <select class="custom-input" name="role" id="role">
                         <option value="admin">admin</option>

@@ -11,8 +11,9 @@ exports.getAllUsers = async (req, res) => {
         console.log("Test Get all users")
         const currentUser = req.LogInUser
         const users = await User.find();
+        const name = req.currentUser
         res.status(201).render('users/index',{
-        users,currentUser});
+        users,currentUser,name});
     }
     catch(err){
         res.status(400).json({
@@ -28,22 +29,20 @@ exports.createNewUser = async (req, res) => {
     try {
         console.log("Test Creating user")
         const currentUser = req.LogInUser
+        const name = req.currentUser
         const user = await User.findById(req.params.id);
-        res.status(201).render('users/createUser',{user, currentUser});
+        res.status(201).render('users/createUser',{user, currentUser,name});
     }
     catch(err){
-        res.status(400).json({
-            status: 'Failed',
-            message: err
-        })
+        next(err)
     }
 }
 
 //This creates the user after the admin fill in form
-exports.createUser = async (req, res) => {
+exports.createUser = async (req, res, next) => {
     try {
         console.log("Test user created")
-        const currentUser = req.LogInUser
+        req.type = 'create'
         await User.create({
         fname: req.body.fname,
         lname: req.body.lname,
@@ -55,10 +54,7 @@ exports.createUser = async (req, res) => {
         res.status(201).redirect('http://localhost:3000/user');
     }
     catch(err){
-        res.status(400).json({
-            status: 'Failed',
-            message: err
-        })
+        next(err)
     } 
 };
 
@@ -67,9 +63,10 @@ exports.updateUser = async (req, res) => {
     try {
         console.log("Test Editing User")
         const currentUser = req.LogInUser
+        const name = req.currentUser
         const updateUser = await User.findOne({_id: req.params.id})
         res.status(201).render('users/updateUser',{
-            updateUser,currentUser
+            updateUser,currentUser,name
             });
     }
     catch(err){
@@ -80,24 +77,38 @@ exports.updateUser = async (req, res) => {
     }
 }
 
-// This updates the user document if the password left empty it doesnt chnage their password
-exports.updateUserData = async (req, res) => {
+// This updates the user document if the password left empty it doesnt change their password
+exports.updateUserData = async (req, res,next) => {
     try {
         console.log("Test user edited")
+        console.log(req.body)
+        req.type = 'update'
         if(req.body.password === '')
         {
             delete req.body.password;
             delete req.body.passwordConfirm;
+            const user = await User.findByIdAndUpdate(req.params.id,{$set : req.body}, {new:true}).select('+password');
+            await user.save({ validateBeforeSave: false })
+            res.status(201).redirect('http://localhost:3000/user');
         }
-        const user = await User.findByIdAndUpdate(req.params.id,{$set : req.body}, {new:true}).select('+password');
-        await user.save({ validateBeforeSave: false })
-        res.status(201).redirect('http://localhost:3000/user');
+        else if(req.body.password === req.body.password)
+        {
+            const user = await User.findByIdAndUpdate(req.params.id,{$set : req.body}, {new:true}).select('+password');
+            await user.save({ validateBeforeSave: true })
+            res.status(201).redirect('http://localhost:3000/user');
+            
+
+        }
+        else
+        {
+            throw new SyntaxError("can you not read")
+        }
+        
+        
+        
     }
     catch(err){
-        res.status(400).json({
-            status: 'Failed',
-            message: err
-        })
+        next(err)
     }
 };
 
@@ -105,7 +116,6 @@ exports.updateUserData = async (req, res) => {
 exports.deleteUser = async (req, res) => {
     try {
         console.log("Test Deleted User")
-        const currentUser = req.LogInUser
         await User.findByIdAndDelete(req.params.id);
         res.status(201).redirect('http://localhost:3000/user');
 
@@ -123,9 +133,10 @@ exports.profile = async (req, res) => {
     try {
         console.log("Test Profile")
         const currentUser = req.LogInUser
+        const name = req.currentUser
         const user = await User.findById(req.params.id);
         res.status(201).render('users/profile',{
-            user, currentUser
+            user, currentUser, name
             });
     }
     catch(err){
@@ -141,6 +152,7 @@ exports.filterAndSort = async (req, res) => {
 
     try {
         const currentUser = req.LogInUser
+        const name = req.currentUser
         const filterpick = req.query.filterlist
         const sortpick = req.query.sortlist
         if(filterpick === 'allUsers')
@@ -205,7 +217,7 @@ exports.filterAndSort = async (req, res) => {
             
         }
              res.status(201).render('users/index',{
-             users, currentUser
+             users, currentUser, name
              });
 
     }

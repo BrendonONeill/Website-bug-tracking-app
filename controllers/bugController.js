@@ -3,16 +3,20 @@ const Bug = require("../models/bugModel")
 const User = require("../models/userModel")
 
 
+
+
 // Gets all bugs from the database and dsiplay them in the main bugs section
 exports.getBugsMain = async (req, res) => {
 
     try {
         console.log("Test Viewing Bugs")
         const currentUser = req.LogInUser
+        const name = req.currentUser
         token = req.cookies.jwt
+        
         const bugs = await Bug.find().populate('bugUserId');
         res.status(201).render('bugs/index',{
-            bugs,currentUser
+            bugs,currentUser, name
             });
     }
     catch(err){
@@ -29,8 +33,9 @@ exports.createUserBug = async (req, res) => {
    
     try {
         const currentUser = req.LogInUser
+        const name = req.currentUser
         const user = await User.findById(req.params.id);
-        res.status(201).render('bugs/createBug',{user,currentUser});
+        res.status(201).render('bugs/createBug',{user,currentUser,name});
     }
     catch(err){
         res.status(400).json({
@@ -70,10 +75,11 @@ exports.expandBugDetails = async (req, res) => {
     try {
         console.log("Test Expanding Bug Content")
         const currentUser = req.LogInUser
+        const name = req.currentUser
         const bug = await Bug.findOne({_id: req.params.id})
         const user = await User.findOne({id: bug.bugUserId})
         res.status(201).render('bugs/bugInformation',{
-            bug,user,currentUser
+            bug,user,currentUser,name
             });
     }
     catch(err){
@@ -90,10 +96,11 @@ exports.updateUserBug = async (req, res) => {
     try {
         console.log("Test updating bug")
         const currentUser = req.LogInUser
+        const name = req.currentUser
         const bug = await Bug.findOne({_id: req.params.id})
         const user = await User.findOne({id: bug.bugUserId})
         res.status(201).render('bugs/updateBug',{
-            bug,user,currentUser
+            bug,user,currentUser,name
             });
     }
     catch(err){
@@ -108,7 +115,6 @@ exports.updateUserBug = async (req, res) => {
 exports.updateBug = async (req, res) => {
     try {
         console.log("Test updated bug")
-        const currentUser = req.LogInUser
         if(req.body.bugPrivate === 'public')
         {
             req.body.bugPrivate = false;
@@ -164,6 +170,7 @@ exports.filterAndSort = async (req, res) => {
 
     try {
         const currentUser = req.LogInUser
+        const name = req.currentUser
         const filterpick = req.query.filterlist
         const sortpick = req.query.sortlist
         if(filterpick === 'userbug')
@@ -227,7 +234,7 @@ exports.filterAndSort = async (req, res) => {
             
         }
              res.status(201).render('bugs/index',{
-             bugs, currentUser
+             bugs, currentUser, name
              });
 
     }

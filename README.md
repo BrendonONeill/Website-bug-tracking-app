@@ -6,6 +6,7 @@ In this project I learnt alot about backend and node js as well as some authenti
 
 ## Potential future features
 I hope to be able to upload images for bugs to help the users to understand the problem of a bug
+User's can comment on other users bugs to ask questions, supply ideas or explain bug. 
 I also want to add more authentication as I learn more about back end where the user can reset password without admin
 
 

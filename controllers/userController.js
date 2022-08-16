@@ -49,7 +49,8 @@ exports.createUser = async (req, res, next) => {
         email: req.body.email,
         password: req.body.password,
         passwordConfirm: req.body.passwordConfirm,
-        role: req.body.role
+        role: req.body.role,
+        title: req.body.title
         });
         res.status(201).redirect('http://localhost:3000/user');
     }
@@ -83,24 +84,28 @@ exports.updateUserData = async (req, res,next) => {
         console.log("Test user edited")
         console.log(req.body)
         req.type = 'update'
-        if(req.body.password === '')
+        if(req.body.password === '' && req.body.passwordConfirm === '')
         {
+            console.log("password was deleted")
             delete req.body.password;
             delete req.body.passwordConfirm;
             const user = await User.findByIdAndUpdate(req.params.id,{$set : req.body}, {new:true}).select('+password');
             await user.save({ validateBeforeSave: false })
             res.status(201).redirect('http://localhost:3000/user');
         }
-        else if(req.body.password === req.body.password)
+        else if(req.body.password === req.body.passwordConfirm)
         {
+            console.log("I went to the database")
             const user = await User.findByIdAndUpdate(req.params.id,{$set : req.body}, {new:true}).select('+password');
+            console.log("this is your database account: " + user)
             await user.save({ validateBeforeSave: true })
             res.status(201).redirect('http://localhost:3000/user');
             
 
         }
-        else
+        else if(req.body.password !== req.body.passwordConfirm)
         {
+            console.log('Interesting...')
             throw new SyntaxError("can you not read")
         }
         
@@ -108,6 +113,7 @@ exports.updateUserData = async (req, res,next) => {
         
     }
     catch(err){
+        console.log('Hello look at my error' + err)
         next(err)
     }
 };
@@ -179,19 +185,19 @@ exports.filterAndSort = async (req, res) => {
         {
             if(sortpick  === 'none')
             {
-                users = await User.find().where({role: 'admin'});
+                users = await User.find().where({ $or: [{role: 'Admin'}, {role: 'Super-Admin'}]});
             }
             else if(sortpick  === 'name')
             {
-                users = await User.find().where({role: 'admin'}).sort({fname: 1});
+                users = await User.find().where({ $or: [{role: 'Admin'}, {role: 'Super-Admin'}]}).sort({fname: 1});
             }
             else if(sortpick  === 'date')
             {
-                users = await User.find().where({role: 'admin'}).sort({dateCreated: 1});
+                users = await User.find().where({ $or: [{role: 'Admin'}, {role: 'Super-Admin'}]}).sort({dateCreated: 1});
             }
             else if(sortpick  === 'role')
             {
-                users = await User.find().where({role: 'admin'}).sort({role: 1})
+                users = await User.find().where({ $or: [{role: 'Admin'}, {role: 'Super-Admin'}]}).sort({role: 1})
             }
             
            
@@ -200,19 +206,19 @@ exports.filterAndSort = async (req, res) => {
         {
             if(sortpick  === 'none')
             {
-                users = await User.find().where({role: 'user'});
+                users = await User.find().where({role: 'User'});
             }
             else if(sortpick  === 'name')
             {
-                users = await User.find().where({role: 'user'}).sort({fname: 1});
+                users = await User.find().where({role: 'User'}).sort({fname: 1});
             }
             else if(sortpick  === 'date')
             {
-                users = await User.find().where({role: 'user'}).sort({dateCreated: 1});
+                users = await User.find().where({role: 'User'}).sort({dateCreated: 1});
             }
             else if(sortpick  === 'role')
             {
-                users = await User.find().where({role: 'user'}).sort({role: 1})
+                users = await User.find().where({role: 'User'}).sort({role: 1})
             }
             
         }

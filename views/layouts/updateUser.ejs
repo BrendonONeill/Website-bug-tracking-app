@@ -23,9 +23,11 @@
                     <input class="custom-input" type="text" name="passwordConfirm">
                     <label for="role">Role</label>
                     <select class="custom-input" name="role" id="role">
-                        <option value="admin">admin</option>
-                        <option value="user">user</option>
+                        <option value="Admin">Admin</option>
+                        <option value="User">User</option>
                     </select>
+                    <label for="title">Title</label>
+                    <input class="custom-input" type="text" name="title" value="<%= updateUser.title%>">
                     <button type="submit">Submit</button>
                 </form>
                 

@@ -14,10 +14,10 @@
       </div>
 
       <div class="nav-links">
-        <% if(currentUser.role === 'admin') { %>
+        <% if(currentUser.role === 'Admin' || currentUser.role === 'Super-Admin'  ) { %>
         <div class="nav-link-container">
           <img src="/navbaricons/users.svg" alt="">
-          <a href="http://localhost:3000/user/"> View Users</a>
+          <a href="http://localhost:3000/user/">View Users</a>
         </div>
         <div class="nav-link-container">
           <img src="/navbaricons/createUsers.svg" alt="">

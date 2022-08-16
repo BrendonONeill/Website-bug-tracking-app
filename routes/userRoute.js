@@ -15,7 +15,7 @@ router.get('/logout', authController.logout);
 // Admin tabs and actions
 router
 .route("/")
-.get(authController.loginedCheck, authController.levelOfLogin("admin"), userController.getAllUsers)
+.get(authController.loginedCheck, authController.levelOfLogin("Super-Admin","Admin"), userController.getAllUsers)
 
 router
 .route("/create/:id")
@@ -48,16 +48,15 @@ router
 
 
 
-
 // sort filtered routes
 
 router
 .route("/filtered/admin")
-.get(authController.loginedCheck, authController.levelOfLogin("admin"), userController.getOnlyAdmin)
+.get(authController.loginedCheck, authController.levelOfLogin("Super-Admin","Admin"), userController.getOnlyAdmin)
 
 router
 .route("/filtered/user")
-.get(authController.loginedCheck, authController.levelOfLogin("admin"), userController.getOnlyUser)
+.get(authController.loginedCheck, authController.levelOfLogin("Super-Admin","Admin"), userController.getOnlyUser)
 
 
 

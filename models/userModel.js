@@ -37,11 +37,14 @@ const userSchema = new Schema({
     },
     role:
     {type: String,
-    enum: ["user","admin"],
+    enum: ["User","Admin","Super-Admin"],
     required:true,
-    default:'user'},
-
-
+    default:'User'},
+    title:
+    {
+        type: String,
+        required:true
+    },
     dateCreated: 
     {   type: Date,
         default: () => Date.now(),

@@ -19,23 +19,27 @@ app.use("/user", userRouter)
 
 
 
-
-
-
-
-
 app.all('*', (req, res, next) => {
-    
+  try {
+    console.log('hello im an error')
+    throw new SyntaxError("This page doesn't exist")
+  } catch (err) {
+    next(err)
+  }
   });
  
   app.use((err, req, res, next) => {
+    (err.message.startsWith ('Email or Password not valid'))
+    ? res.status(400).render('login/login',{message : 'Email or Password not valid'}):
     //res.status(404).render('login/login',{message : err.message });
     (err.message.endsWith ('Passwords are not the same') && req.type === 'create')
-    ?res.status(404).render('users/createUser',{message : 'Passwords do not match', name: req.currentUser, currentUser : req.LogInUser}):
-    (err.message.endsWith ('Passwords are not the same') && req.type === 'update')
-    ?res.status(404).render('users/error',{message : 'An Error has occured', name: req.currentUser, currentUser : req.LogInUser}):
+    ?res.status(400).render('users/createUser',{message : 'Passwords do not match', name: req.currentUser, currentUser : req.LogInUser}):
     (err.message.startsWith ('E11000'))
-    ? res.status(404).render('users/createUser',{message : 'Email already used on another account', name: req.currentUser, currentUser : req.LogInUser}): ""
+    ? res.status(400).render('users/createUser',{message : 'Email already used on another account', name: req.currentUser, currentUser : req.LogInUser}):
+    (err.message.startsWith ('can you not read'))
+    ?res.status(404).render('users/error',{message : 'An Error has occured, Please try again later.'}): 
+    (err.message.startsWith ("This page doesn't exist"))
+    ?res.status(404).render('users/error',{message : `404 Error Not Found`, name: req.currentUser, currentUser : req.LogInUser}): ""
   })
 
   

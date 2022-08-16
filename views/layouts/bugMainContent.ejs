@@ -7,8 +7,10 @@
           <label for="filter"><img src="/filter.svg" alt="filter"></label>
           <select class="custom-filter" id="filter" name="filterlist">
             <option value="userbug">User Bugs</option>
-            <option value="public">Public Bugs</option>
-            <option value="allbugs" selected>All Bugs</option>
+            <option value="public" selected>Public Bugs</option>
+            <% if(currentUser.role === "Super-Admin") { %>
+            <option value="allbugs" >All Bugs</option>
+            <% } %>
           </select>
           <label for="sort"><img src="/sort.svg" alt="sort"> </label>
           <select class="custom-filter" id="sort" name="sortlist">
@@ -22,6 +24,23 @@
         </div>
 
         <div class="bugsContainer">
+            <div class="levels-container">
+              <h4>Levels of Importance</h3>
+            <div class="information-card">
+              <div class="level-help">
+                <p>Low</p>
+                <div class="level-help-circle" data-colour="green"></div>
+              </div>
+              <div class="level-help">
+                <p>Medium</p>
+                <div class="level-help-circle" data-colour="orange"></div>
+              </div>
+              <div class="level-help">
+                <p>High</p>
+                <div class="level-help-circle" data-colour="red"></div>
+              </div>
+            </div>
+          </div>
             <% bugs.forEach(bug => { %>
             <div class="card-styles">
               <div class="bug-information">

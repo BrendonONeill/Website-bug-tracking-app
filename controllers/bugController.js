@@ -181,7 +181,7 @@ exports.filterAndSort = async (req, res) => {
             }
             else if(sortpick  === 'importance')
             {
-                bugs = await Bug.find().where({bugUserId: currentUser.id}).sort({bugImportance: -1}).populate('bugUserId');
+                bugs = await Bug.find().where({bugUserId: currentUser.id}).sort({bugImportance: 1}).populate('bugUserId');
             }
             else if(sortpick  === 'bugName')
             {
@@ -201,7 +201,7 @@ exports.filterAndSort = async (req, res) => {
             }
             else if(sortpick  === 'importance')
             {
-                bugs = await Bug.find().where({bugPrivate: false}).populate('bugUserId').sort({bugImportance: -1});
+                bugs = await Bug.find().where({bugPrivate: false}).populate('bugUserId').sort({bugImportance: 1});
             }
             else if(sortpick  === 'bugName')
             {
@@ -221,7 +221,7 @@ exports.filterAndSort = async (req, res) => {
             }
             else if(sortpick  === 'importance')
             {
-                bugs = await Bug.find().populate('bugUserId').sort({bugImportance: -1});
+                bugs = await Bug.find().populate('bugUserId').sort({bugImportance: 1});
             }
             else if(sortpick  === 'bugName')
             {

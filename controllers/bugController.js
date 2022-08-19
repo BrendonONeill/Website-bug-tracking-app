@@ -48,6 +48,7 @@ exports.createUserBug = async (req, res) => {
 // This creates the bug documnet after the user inputs their information into the form
 exports.createBug = async (req, res) => {
     try {
+
         console.log("Test Bug Created")
         const userId = await User.findById(req.params.id)
         req.body.bugUserId = userId

@@ -51,13 +51,10 @@
                
                <p class="badge-styles-main"><i class="bi bi-folder"></i> <%= bug.bugProject %></p>
                <p class="badge-styles-main"><i class="bi bi-code"></i> <%= bug.bugCode %></p>
-               
-               <div>
-               <p class="badge-styles"><i class="bi bi-chat"></i> <%= bug.Comments.length %></p>
-              </div>
+            
               <div class="person-date">
-                <h4><i class="bi bi-person"></i> <%= bug.bugUserId.fname %> <%= bug.bugUserId.lname[0] %></h4>
-                <b><h4><i class="bi bi-calendar3"></i> <%= bug.dateBugCreated.toLocaleDateString('en-us', {year: 'numeric', month: 'long', day: 'numeric'}) %></h4></b>
+                <h4><i class="bi bi-person"></i>  <%= bug.bugUserId.fname %> <%= bug.bugUserId.lname[0] %></h4>
+                <b><h4><i class="bi bi-calendar3"></i>  <%= bug.dateBugCreated.toLocaleDateString('en-us', {year: 'numeric', month: 'long', day: 'numeric'}) %></h4></b>
                </div>
               </div>
 

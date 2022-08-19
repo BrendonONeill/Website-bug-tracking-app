@@ -1,3 +1,4 @@
+
 /* Reformat CSS styling */
 *
 {
@@ -7,12 +8,28 @@
 
 }
 
+body
+{
+    height: 100%;
+}
+
+/* Varible colour */
+
+:root
+{
+    --main-bg-colour: #1D5D4B;
+    --main-cta-colour: #5F419F;
+    --delete-colour: #A80000;
+    --main-badge-colour: #38A0C2;
+    --button-main-colour: #62567D;
+}
+
 /* Navbar */
 .navbar
 {
     height: 10vh;
     width: 100%;
-    background-color: #3DB691;
+    background-color: var(--main-bg-colour);
     color: white;
     border-radius: 0 0 5px 5px;
 
@@ -25,11 +42,27 @@
     align-items: center;
 }
 
+.navbar-content-error
+{
+    max-width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.nav-bug-error
+{
+    max-width: 100%;
+}
+
 .logged-in
 {
     display: flex;
     justify-content: center;
-    align-items: flex-end;
+    align-items: center;
+    max-height: 100%;
+    margin-top: 20px;
 }
 
 
@@ -39,7 +72,7 @@
     top: 10vh;
     height: 85vh;
     width: 75%;
-    background-color: #3ACCCA;
+    background-color: var(--main-badge-colour);
     border-radius: 0 20px 20px 0;
 }
 
@@ -81,7 +114,7 @@
     background-color: #E9ECEF;
     border-bottom: 3px solid #2e8f72;
     display: flex;
-    justify-content: center;
+    justify-content:space-evenly;
     align-items: center;
 }
 
@@ -163,7 +196,8 @@
 .person-date
 {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: space-between;
 }
 
@@ -171,7 +205,7 @@
 {
     margin-top: 20px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 .card-alert
@@ -200,25 +234,32 @@
     height: 80vh;
     background-color: #fff;
     border-radius: 20px;
-    border: 3px solid #2e8f72;
+    border: 3px solid var(--main-bg-colour);
     margin-top: 20px;
     overflow-y: scroll;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 50px;
+    padding-top: 30px;
+    padding-bottom: 10px;
 }
+
 
 .custom-input
 {
-    border: 3px solid #3DB691;
+    border: 3px solid var(--main-bg-colour);
     border-radius: 5px;
     display: block;
     width: 300px;
     margin-bottom: 20px;
 }
 
+.form-error-text
+{
+    max-width: 32ch;
+    text-align: center;
+}
 
 /* Information cards */
 .card-container
@@ -247,7 +288,22 @@
     margin-bottom: 20px;
     box-shadow: 0 0 10px grey;
     border-radius: 20px;
-    padding: 0 20px 0 20px;  
+    padding: 20px;  
+}
+
+.info-section-style
+{
+    width: 100%;
+}
+
+.info-bug-head
+{
+    border-bottom: 5px solid var(--button-main-colour);
+    background-color: var(--main-bg-colour);
+    border-radius: 5px;
+    color: #fff;
+    padding: 5px;
+    text-align: center;
 }
 
 
@@ -281,6 +337,12 @@
     border-radius: 20px;  
 }
 
+.info-style-body
+{
+    margin-block: 20px;
+    text-align: center;
+}
+
 
 
 /* Reused custom styles */
@@ -300,7 +362,6 @@
     background-color: white;
     border-radius: 20px;
     padding: 20px;
-    border: 1px solid black;
     box-shadow: -2px 5px 10px grey ;
 }
 
@@ -318,7 +379,7 @@
 .button-styles
 {
     display: inline-block;
-    background-color: #3DB691;
+    background-color: var(--main-bg-colour);
     border-radius: 5px;
     padding: 5px;
     color: white;
@@ -330,7 +391,7 @@
     margin-top: 10px;
     margin-left: 20px;
     display: inline-block;
-    background-color: #3DB691;
+    background-color: var(--main-bg-colour);
     border-radius: 5px;
     padding: 5px 20px 5px 20px;
     color: white;
@@ -341,7 +402,7 @@
 
 .delete-button
 {
-    background-color: rgb(192, 0, 0);
+    background-color: var(--delete-colour);
 }
 
 .button-spacing
@@ -353,12 +414,13 @@
 {
     font-weight: bold;
     margin-bottom: 5px;
+    color: var(--main-bg-colour);
 }
 
 .badge-styles-main
 {
-    padding: 10px;
-    background-color: #38A0C2;
+    padding: 8px;
+    background-color: var(--main-badge-colour);
     display: inline-block;
     color: white;
     max-width: 15ch;
@@ -372,11 +434,12 @@
 
 .custom-filter
 {
-    border: 3px solid #3DB691;
+    border: 3px solid var(--main-bg-colour);
     border-radius: 5px;
     width: 100px;
     margin-bottom: 20px;
     margin-top: 10px;
+    margin-inline: 2px;
 }
 
 a
@@ -398,12 +461,12 @@ footer
 {
     height: 5vh;
     width: 100%;
-    background-color: #2e8f72;
+    background-color: #1D5D4B;
     border-radius: 5px 5px 0 0;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding-right: 40px;
+    padding: 20px;
     color: white;
 }
 
@@ -414,7 +477,7 @@ footer
 {
     height: 10vh;
     width: 100%;
-    background-color: #3DB691;
+    background-color: var(--main-bg-colour);
     color: white;
     border-radius: 0 0 5px 5px;
     display: flex;
@@ -441,25 +504,25 @@ footer
 
 .login
 {
-    background-color: #2e8f72;
+    background-color: #1D5D4B;
     width: 80%;
     height: 40%;
     border-radius: 20px;
-    box-shadow: 10px 10px 30px 5px #1c5745;
+    box-shadow: 5px 5px 10px 5px #144134;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-left: 20px;
+    padding: 20px;
     position: relative;
 }
 
 .custom-input-login
 {
-    border: 3px solid #3DB691;
+    border: none;
     border-radius: 5px;
     display: block;
-    width: 250px;
-    margin-bottom: 5px;
+    width: 220px;
+    margin-bottom: 2px;
 }
 
 
@@ -473,12 +536,13 @@ footer
 .button-styles-login
 {
     display: inline-block;
-    background-color: #3BCCCA;
+    background-color: #5F419F;
     border-radius: 5px;
     margin-top: 20px;
     padding: 5px;
     color: white;
     cursor: pointer;
+    font-weight: bold;
 }
 
 .error-message
@@ -491,6 +555,7 @@ footer
     position: absolute;
     top: -40%;
     text-align: center;
+    border-radius: 10px;
 }
 
 .error-message-form
@@ -503,8 +568,39 @@ footer
     font-weight: bold;
     position: absolute;
     text-align: center;
+    
 }
 
+
+/* Error Page */
+
+.error-container
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-text
+{
+    padding: 20px;
+    text-align: center;
+}
+
+.error-text h1
+{
+    margin-bottom: 20px;
+}
+
+.error-page-uknown
+{
+    background-color: var(--main-bg-colour);
+    color: white;
+    font-size: 3rem;
+    font-weight: bold;
+    border-radius: 20px;
+}
 
 
 

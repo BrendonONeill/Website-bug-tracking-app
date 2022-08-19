@@ -8,11 +8,13 @@
             <h1><%= user.fname %> <%= user.lname %></h1>
         </div>
         <div class="info-style-body">
-       <p><%= user.email %></p>
-       <P><%= user.title %></P>
+       <b><P><i class="bi bi-person-circle"> </i><%= user.title %></P>
+       <p><p><i class="bi bi-envelope"></i> <%= user.email %></p>
+       
+       <p class=""> <i class="bi bi-person"> </i> <%= user.role %></p>
+       <p class=""> <i class="bi bi-calendar3"> </i> <%= user.dateCreated.toLocaleDateString('en-us', {year: 'numeric', month: 'long', day: 'numeric'})  %></p></b>
        </div>
-       <p class="badge-styles-main"><%= user.role %></p>
-       <p class="badge-styles-main"><%= user.dateCreated.toLocaleDateString('en-us', {year: 'numeric', month: 'long', day: 'numeric'})  %></p>
+       
     </div>
     </div>
 </div>

@@ -37,9 +37,9 @@ app.all('*', (req, res, next) => {
     (err.message.startsWith ('E11000'))
     ? res.status(400).render('users/createUser',{message : 'Email already used on another account', name: req.currentUser, currentUser : req.LogInUser}):
     (err.message.startsWith ('can you not read'))
-    ?res.status(404).render('users/error',{message : 'An Error has occured, Please try again later.'}): 
+    ?res.status(404).render('users/error',{message : "This page doesn't exist, Please try again later."}): 
     (err.message.startsWith ("This page doesn't exist"))
-    ?res.status(404).render('users/error',{message : `404 Error Not Found`, name: req.currentUser, currentUser : req.LogInUser}): ""
+    ?res.status(404).render('users/error',{message : "This page doesn't exist, Please try again later.", name: req.currentUser, currentUser : req.LogInUser}): ""
   })
 
   

@@ -4,7 +4,7 @@
 
 
                   
-    <div class="contentFilters">
+    <div class="filterContainer">
       <form action="http://localhost:3000/user/filter/" id="bugForm">
         <label for="filter"><img src="/filter.svg" alt=""></label>
         <select class="custom-filter" id="filter" name="filterlist">
@@ -21,11 +21,8 @@
         </select>
           <input class="button-styles" type="submit">
         </form>
-
-        
     </div>
     <div class="bugsContainer">
-        <h1>Users</h1>
         <% if(typeof message !== 'undefined'){ %>
           <div class="error-message-form"><%= message %></div> 
         <% } %>

@@ -8,19 +8,30 @@
             <div class="card-container">
                 <button class="back-styles"><a href="http://localhost:3000/bug"><i class="bi bi-arrow-left"></i></a></button>
                 <div class="info-style">
-                   
-                <h2>Bug Name</h2>
-               <p><%= bug.bugName %></p>
-               <h2>Creator</h2>
-               <p><%= user.fname %> <%= user.fname %></p>
-               <h2>Description</h2>
-               <p><%= bug.bugDes %></p>
-               <h2>Project</h2>
-               <p><%= bug.bugProject %></p>
-               <h2>Code</h2>
-               <p><%= bug.bugCode %></p>
-               <h2>Date Created</h2>
-               <p><%= bug.dateBugCreated.toLocaleDateString('en-us', {year: 'numeric', month: 'long', day: 'numeric'}) %></p>
+                <div class="info-section-style">
+                    <h2 class="info-bug-head">Bug Name</h2>
+                    <p><%= bug.bugName %></p>
+                </div>
+                <div class="info-section-style">
+                    <h2 class="info-bug-head">Creator</h2>
+                    <p><%= user.fname %> <%= user.lname %></p>
+                </div>
+                <div class="info-section-style">
+                    <h2 class="info-bug-head">Description</h2>
+                    <p><%= bug.bugDes %></p>
+                </div>
+                <div class="info-section-style">
+                    <h2 class="info-bug-head">Project</h2>
+                    <p><%= bug.bugProject %></p>
+               </div>
+               <div class="info-section-style">
+                    <h2 class="info-bug-head">Code</h2>
+                    <p><%= bug.bugCode %></p>
+               </div>
+               <div class="info-section-style">
+                    <h2 class="info-bug-head">Date Created</h2>
+                    <p><%= bug.dateBugCreated.toLocaleDateString('en-us', {year: 'numeric', month: 'long', day: 'numeric'}) %></p>
+               </div>
                </div>
             </div>
         </div>

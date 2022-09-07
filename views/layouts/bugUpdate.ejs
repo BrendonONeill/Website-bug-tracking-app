@@ -9,21 +9,21 @@
             <div class="form-Conatiner">
                 <form action="http://localhost:3000/bug/update/<%= bug.id %>?_method=PUT" method="POST">
                     <label class="label-styles" for="bugName">Name</label>
-                    <input class="custom-input" type="text" name="bugName" required placeholder="Login bug" value="<%=bug.bugName%>" maxlength="30">
+                    <input class="custom-input custom-input-padding" type="text" name="bugName" required placeholder="Login bug" value="<%=bug.bugName%>" maxlength="30">
                     <label class="label-styles" for="bugDescription">Description</label>
-                    <textarea class="custom-input" type="text" name="bugDes" ro required placeholder="Bug Description" rows="4" cols="50" maxlength="250"><%=bug.bugDes%></textarea>
+                    <textarea class="custom-input custom-input-padding" type="text" name="bugDes" ro required placeholder="Bug Description" rows="4" cols="50" maxlength="250"><%=bug.bugDes%></textarea>
                     <label class="label-styles" for="bugProject">Project</label>
-                    <input class="custom-input" type="text" name="bugProject" required placeholder="Bug Tracker" value="<%=bug.bugProject%>" maxlength="30">
+                    <input class="custom-input custom-input-padding" type="text" name="bugProject" required placeholder="Bug Tracker" value="<%=bug.bugProject%>" maxlength="30">
                     <label class="label-styles" for="bugCode">Code</label>
-                    <input class="custom-input" type="text" name="bugCode" required placeholder="Kotlin" value="<%=bug.bugCode%>" maxlength="30">
+                    <input class="custom-input custom-input-padding" type="text" name="bugCode" required placeholder="Kotlin" value="<%=bug.bugCode%>" maxlength="30">
                     <label class="label-styles" for="bugImportance">Bug Level of Importance</label>
-                    <select class="custom-input" name="bugImportance" id="bugImportance">
+                    <select class="custom-input custom-input-padding" name="bugImportance" id="bugImportance">
                         <option value="low">low</option>
                         <option value="medium">medium</option>
                         <option value="high">high</option>
                     </select>
                     <label class="label-styles" for="bugPrivate">Bug viewability</label>
-                    <select class="custom-input" name="bugPrivate" id="bugPrivate">
+                    <select class="custom-input custom-input-padding" name="bugPrivate" id="bugPrivate">
                         <option value="public" >Public</option>
                         <option value="private" >Private</option>
                     </select>

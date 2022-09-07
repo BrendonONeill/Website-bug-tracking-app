@@ -24,7 +24,7 @@ exports.getAllUsers = async (req, res) => {
 }
 
 // This brings an admin to a form to create a new user 
-exports.createNewUser = async (req, res) => {
+exports.createNewUser = async (req, res, next) => {
 
     try {
         console.log("Test Creating user")
@@ -33,7 +33,9 @@ exports.createNewUser = async (req, res) => {
         const user = await User.findById(req.params.id);
         res.status(201).render('users/createUser',{user, currentUser,name});
     }
-    catch(err){
+    catch(err)
+    {
+        throw new SyntaxError("can you not read")
         next(err)
     }
 }

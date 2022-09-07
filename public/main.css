@@ -367,7 +367,7 @@ body
 
 .badge-styles
 {
-    padding: 5px;
+    padding: 5px 10px;
     background-color: #2e8f72;
     display: inline-block;
     color: white;
@@ -602,6 +602,119 @@ footer
     border-radius: 20px;
 }
 
+
+/* Media Query */
+
+@media only screen and (min-width: 600px) {
+    
+    /* Viewing Bugs section at 600px */
+
+    #bugForm
+    {
+        width: 45%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+    }
+
+    .levels-container
+    {
+        margin-left: 1.4rem;
+    }
+
+    .bugsContainer
+    {
+        max-width: 65%;
+        margin: auto;
+        padding-block: 2rem;
+    }
+
+    .card-styles
+    {
+        min-height: 300px;
+    }
+
+    .card-styles-user
+    {
+        text-align: center;
+    }
+
+    .person-date
+    {
+        flex-direction: row;
+    }
+
+    .bug-buttons
+    {
+        margin-top: 40px;
+    }
+
+    .card-heading
+    {
+        text-align: center;
+    }
+
+
+    /* form styling */
+
+    .form-Conatiner
+    {
+        max-width: 60%;
+        max-height: 68vh;
+        margin-top: 5vh;
+    }
+
+    .custom-input-padding
+    {
+        padding-left: 5px;
+    }
+
+    .label-styles
+    {
+        font-weight: bold;
+        font-size: 1.3rem;
+       
+    }
+
+    /* info card at 600px */
+
+    .info-style
+    {
+        width: 60%;
+        text-align: center; 
+    }
+
+    .info-bug-head
+    {
+        margin-bottom: 20px;
+    }
+
+    .back-styles
+    {
+        margin-left: 20vw;
+    }
+
+    /* Profile at 600px */
+
+    .info-style-body
+    {
+        font-size: 1.4rem;
+    }
+
+
+    /* Reused custom styles at 600px */
+    
+    .user-buttons
+    {
+        height: 40px;
+        max-width: 40%;
+        margin-inline: auto;
+    }
+
+
+
+  }
 
 
 

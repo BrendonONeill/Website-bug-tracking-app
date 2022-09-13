@@ -1,7 +1,41 @@
-<div class="container-fluid main-container">
+<div class="main-container">
+
+    <div class="side-bar-nav">
+        
+      <div class="nav-links">
+        <div class="nav-link-container">
+          <img src="/navbaricons/person.svg" alt="">
+          <a href="http://localhost:3000/user/profile/<%= currentUser.id %>"> Profile</a>
+        </div>
+        <% if(currentUser.role === 'Admin' || currentUser.role === 'Super-Admin'  ) { %>
+        <div class="nav-link-container">
+          <img src="/navbaricons/users.svg" alt="">
+          <a href="http://localhost:3000/user/">View Users</a>
+        </div>
+        <div class="nav-link-container">
+          <img src="/navbaricons/createUsers.svg" alt="">
+          <a href="http://localhost:3000/user/create/<%= currentUser.id %>">Create Users</a>
+        </div>
+        <% }%>
+        <div class="nav-link-container">
+          <img src="/navbaricons/viewBugs.svg" alt="">
+          <a href="http://localhost:3000/bug/">View Bugs</a>
+        </div>
+        <div class="nav-link-container">
+          <img src="/navbaricons/createBugs.svg" alt="">
+          <a href="http://localhost:3000/bug/create/<%= currentUser.id %>">Create Bugs</a>
+        </div>
+        <div class="nav-link-container">
+          <img src="/navbaricons/logout.svg" alt="">
+          <a href="http://localhost:3000/user/logout">Log Out</a>
+        </div>
+      </div>
+    </div>
+
+<div class="container-fluid content-container">
     <div class="row">
         
-        <div class="col">
+        <div class="col main-form-container">
 
 
           
@@ -50,4 +84,6 @@
 
         </div>
     </div>
+</div>
+
 </div>

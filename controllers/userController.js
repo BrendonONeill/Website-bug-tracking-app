@@ -35,7 +35,7 @@ exports.createNewUser = async (req, res, next) => {
     }
     catch(err)
     {
-        throw new SyntaxError("can you not read")
+        err.message = "This page doesn't exist"
         next(err)
     }
 }
@@ -57,6 +57,12 @@ exports.createUser = async (req, res, next) => {
         res.status(201).redirect('http://localhost:3000/user');
     }
     catch(err){
+        console.log(err.message)
+        if(err.message.startsWith ('E11000') || err.message.startsWith('User validation failed'))
+        {
+            next(err)
+        }
+        err.message = "This page doesn't exist"
         next(err)
     } 
 };
@@ -73,10 +79,9 @@ exports.updateUser = async (req, res) => {
             });
     }
     catch(err){
-        res.status(400).json({
-            status: 'Failed',
-            message: err
-        })
+        
+        err.message = "This page doesn't exist"
+        next(err)
     }
 }
 
@@ -129,15 +134,13 @@ exports.deleteUser = async (req, res) => {
 
     }
     catch(err){
-        res.status(400).json({
-            status: 'Failed',
-            message: err
-        })
+        err.message = "This page doesn't exist"
+        next(err)
     }
 };
 
 //This opens up the users profile
-exports.profile = async (req, res) => {
+exports.profile = async (req, res, next) => {
     try {
         console.log("Test Profile")
         const currentUser = req.LogInUser
@@ -148,10 +151,8 @@ exports.profile = async (req, res) => {
             });
     }
     catch(err){
-        res.status(400).json({
-            status: 'Failed',
-            message: err
-        })
+        err.message = "This page doesn't exist"
+        next(err)
     }
 }
 
@@ -230,10 +231,8 @@ exports.filterAndSort = async (req, res) => {
 
     }
     catch(err){
-        res.status(400).json({
-            status: 'Failed',
-            message: err
-        })
+        err.message = "This page doesn't exist"
+        next(err)
     }
 }
 

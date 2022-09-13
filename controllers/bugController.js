@@ -6,7 +6,7 @@ const User = require("../models/userModel")
 
 
 // Gets all bugs from the database and dsiplay them in the main bugs section
-exports.getBugsMain = async (req, res) => {
+exports.getBugsMain = async (req, res, next) => {
 
     try {
         console.log("Test Viewing Bugs")
@@ -20,15 +20,13 @@ exports.getBugsMain = async (req, res) => {
             });
     }
     catch(err){
-        res.status(400).json({
-            status: 'Failed',
-            message: err
-        })
+        err.message = "This page doesn't exist"
+        next(err)
     }
 }
 
 // This is brings the user to a form to create a new bug
-exports.createUserBug = async (req, res) => {
+exports.createUserBug = async (req, res, next) => {
     console.log("Test Creating bug")
    
     try {
@@ -38,15 +36,13 @@ exports.createUserBug = async (req, res) => {
         res.status(201).render('bugs/createBug',{user,currentUser,name});
     }
     catch(err){
-        res.status(400).json({
-            status: 'Failed',
-            message: err
-        })
+        err.message = "This page doesn't exist"
+        next(err)
     }
 }
 
 // This creates the bug documnet after the user inputs their information into the form
-exports.createBug = async (req, res) => {
+exports.createBug = async (req, res, next) => {
     try {
 
         console.log("Test Bug Created")
@@ -64,15 +60,13 @@ exports.createBug = async (req, res) => {
         res.status(201).redirect('http://localhost:3000/bug');
     }
     catch(err){
-        res.status(400).json({
-            status: 'Failed',
-            message: err
-        })
+        err.message = "This page doesn't exist"
+        next(err)
     }
 };
 
 // This brings users to the another page where more details are given on the current bug
-exports.expandBugDetails = async (req, res) => {
+exports.expandBugDetails = async (req, res, next) => {
     try {
         console.log("Test Expanding Bug Content")
         const currentUser = req.LogInUser
@@ -84,15 +78,13 @@ exports.expandBugDetails = async (req, res) => {
             });
     }
     catch(err){
-        res.status(400).json({
-            status: 'Failed',
-            message: err
-        })
+        err.message = "This page doesn't exist"
+        next(err)
     }
 }
 
 //This brings user to another page with a form to edit the current bug document
-exports.updateUserBug = async (req, res) => {
+exports.updateUserBug = async (req, res, next) => {
 
     try {
         console.log("Test updating bug")
@@ -105,15 +97,13 @@ exports.updateUserBug = async (req, res) => {
             });
     }
     catch(err){
-        res.status(400).json({
-            status: 'Failed',
-            message: err
-        })
+        err.message = "This page doesn't exist"
+        next(err)
     }
 }
 
 // This updates the bug documnet after the user inputs their information into the form
-exports.updateBug = async (req, res) => {
+exports.updateBug = async (req, res, next) => {
     try {
         console.log("Test updated bug")
         if(req.body.bugPrivate === 'public')
@@ -129,25 +119,21 @@ exports.updateBug = async (req, res) => {
         res.status(201).redirect('http://localhost:3000/bug');
     }
     catch(err){
-        res.status(400).json({
-            status: 'Failed',
-            message: err
-        })
+        err.message = "This page doesn't exist"
+        next(err)
     }
 };
 
 //This deletes the current selected bug will implement a modal to make sure you wanted to delete bug
-exports.deleteBug = async (req, res) => {
+exports.deleteBug = async (req, res, next) => {
     try {
         console.log("Test Bug Deleted")
         await Bug.findByIdAndDelete(req.params.id);
         res.status(201).redirect('http://localhost:3000/bug');
     }
     catch(err){
-        res.status(400).json({
-            status: 'Failed',
-            message: err
-        })
+        err.message = "This page doesn't exist"
+        next(err)
     }
 }; 
 
@@ -159,15 +145,13 @@ exports.deleteUsersBug = async (req, res,next) => {
         next()
     }
     catch(err){
-        res.status(400).json({
-            status: 'Failed',
-            message: err
-        })
+        err.message = "This page doesn't exist"
+        next(err)
     }
 };
 
 //Filter and Sort
-exports.filterAndSort = async (req, res) => {
+exports.filterAndSort = async (req, res, next) => {
 
     try {
         const currentUser = req.LogInUser
@@ -240,10 +224,8 @@ exports.filterAndSort = async (req, res) => {
 
     }
     catch(err){
-        res.status(400).json({
-            status: 'Failed',
-            message: err
-        })
+        err.message = "This page doesn't exist"
+        next(err)
     }
 }
 

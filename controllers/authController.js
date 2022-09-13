@@ -28,21 +28,20 @@ exports.loginIn = async (req, res, next) => {
     }
     catch(err)
     {
-        console.log(err)
+        
         next(err)
     }   
  }
 
  //This is created to give the jwt time to be set up in the cookie before it it checked by the logined check
-exports.justloggedin = async(req, res) => {
+exports.justloggedin = async(req, res, next) => {
     
     try{
         res.redirect('../bug/')
     }
     catch(err)
     {
-
-        console.error(err);
+        next(err)
     }
     
  
@@ -101,7 +100,6 @@ exports.loginedCheck = async(req, res, next) => {
     }
     catch(err)
     {
-        console.error(err);
         next(err)
     }
 }

@@ -11,16 +11,24 @@
 body
 {
     height: 100%;
+    background-color: #E9ECEF;
 }
 
+.main-container
+{
+    display: flex;
+    
+}
 /* Varible colour */
 
 :root
 {
     --main-bg-colour: #1D5D4B;
+    --main-bg-colour-hover:  #62567D;
     --main-cta-colour: #5F419F;
     --delete-colour: #A80000;
-    --main-badge-colour: #38A0C2;
+    --delete-colour-hover: #df0000;
+    --main-badge-colour: #2f84a0;
     --button-main-colour: #62567D;
 }
 
@@ -31,7 +39,6 @@ body
     width: 100%;
     background-color: var(--main-bg-colour);
     color: white;
-    border-radius: 0 0 5px 5px;
 
 }
 
@@ -94,6 +101,11 @@ body
     text-decoration: none;
     padding-left: 10px;
     
+}
+
+.side-bar-nav
+{
+    display: none;
 }
 /* nav side bar styling */
 .nav-col
@@ -206,6 +218,7 @@ body
     margin-top: 20px;
     display: flex;
     justify-content: space-between;
+    margin-top: 40px;
 }
 
 .card-alert
@@ -225,24 +238,29 @@ body
 }
 
 /* form styling */
+.main-form-container
+{
+    height: 85vh;
+}
 
 .form-Conatiner
 {
+    
     margin: auto;
     width: 100%;
+    height: auto;
     max-width: 1200px;
-    height: 80vh;
+    overflow-x: hidden;
     background-color: #fff;
     border-radius: 20px;
     border: 3px solid var(--main-bg-colour);
     margin-top: 20px;
-    overflow-y: scroll;
-    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 30px;
     padding-bottom: 10px;
+    
 }
 
 
@@ -343,14 +361,28 @@ body
     text-align: center;
 }
 
+.scroll-none
+{
+    overflow-y: hidden;
+}
+
 
 
 /* Reused custom styles */
-.main-container
+.content-container
 {
     width: 100%;
     height: 85vh;
     background-color: #E9ECEF;
+}
+
+
+
+.error-container
+{
+    width: 100%;
+    height: 85vh;
+    background-color: #fff;
 }
 
 .card-styles
@@ -386,6 +418,17 @@ body
     cursor: pointer;
 }
 
+.button-styles:hover
+{
+    color: white;
+    background-color: var(--main-bg-colour-hover);
+}
+
+.button-styles a:hover
+{
+    color: white;
+}
+
 .back-styles
 {
     margin-top: 10px;
@@ -403,6 +446,11 @@ body
 .delete-button
 {
     background-color: var(--delete-colour);
+}
+
+.delete-button:hover
+{
+    background-color: var(--delete-colour-hover);
 }
 
 .button-spacing
@@ -462,7 +510,6 @@ footer
     height: 5vh;
     width: 100%;
     background-color: #1D5D4B;
-    border-radius: 5px 5px 0 0;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -645,10 +692,6 @@ footer
         flex-direction: row;
     }
 
-    .bug-buttons
-    {
-        margin-top: 40px;
-    }
 
     .card-heading
     {
@@ -715,6 +758,182 @@ footer
 
 
   }
+
+
+  /* Laptop */
+  @media screen and (min-device-width: 1200px) and (max-device-width: 2000px)
+  {
+   
+    .navbar-toggler
+    {
+        display: none;
+    }
+
+    .content-container
+    {
+        max-width: 75%;
+        justify-self: center;
+    }
+
+    .side-bar-nav
+    {
+        padding-top: 6rem;
+        background-color: #144134;
+        max-width: 256px;
+        width: 100%;
+        display: flex;
+        justify-self: flex-start;
+    }
+
+    .nav-link-container
+    {
+        padding-right: 20px;
+        justify-content: center;
+    }
+
+    .nav-links
+    {
+        width: 100%;
+    }
+
+    .navbar
+    {
+        padding-inline: 20px;
+    }
+
+    .user-buttons
+    {
+        max-width: 50%;
+        justify-content: space-around;
+    }
+
+    .bug-buttons
+    {
+        max-width: 65%;
+        margin-inline: auto ;
+    }
+
+    .filterContainer form
+    {
+        max-width: 25%;
+    }
+
+    .back-styles
+    {
+       margin-left: 0;
+    }
+
+    .card-styles
+    {
+        max-width: 500px;
+    }
+
+    .levels-container
+    {
+        margin-inline: auto;
+    }
+
+    .login
+    {
+        width: 40%;
+    }
+
+    .custom-input-login
+    {
+        width: 400px;
+        padding-left: 10px;
+    }
+  }
+
+   /* 4k Screen and TV */
+   @media screen and (min-device-width: 2000px)
+   {
+    .navbar-toggler
+    {
+        display: none;
+    }
+
+    .content-container
+    {
+        max-width: 50%;
+        justify-self: center;
+    }
+
+    .side-bar-nav
+    {
+        padding-top: 6rem;
+        background-color: #144134;
+        max-width: 256px;
+        width: 100%;
+        display: flex;
+        justify-self: flex-start;
+    }
+
+    .nav-link-container
+    {
+        padding-right: 20px;
+        justify-content: center;
+    }
+
+    .nav-links
+    {
+        width: 100%;
+    }
+
+    .navbar
+    {
+        padding-inline: 20px;
+    }
+
+    .user-buttons
+    {
+        max-width: 50%;
+        justify-content: space-around;
+    }
+
+    .bug-buttons
+    {
+        max-width: 65%;
+        margin-inline: auto ;
+    }
+
+    .filterContainer form
+    {
+        max-width: 20%;
+    }
+
+    .back-styles
+    {
+       margin-left: 0;
+    }
+
+    .card-styles
+    {
+        max-width: 500px;
+    }
+
+    .levels-container
+    {
+        margin-inline: auto;
+    }
+
+    .login
+    {
+        width: 40%;
+    }
+
+    .custom-input-login
+    {
+        width: 400px;
+        padding-left: 10px;
+    }
+
+   }
+
+
+  
+
+
 
 
 

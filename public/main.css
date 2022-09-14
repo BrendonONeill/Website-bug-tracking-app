@@ -1,11 +1,9 @@
-
 /* Reformat CSS styling */
 *
 {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
 }
 
 body
@@ -17,9 +15,9 @@ body
 .main-container
 {
     display: flex;
-    
 }
-/* Varible colour */
+
+/* Varible colours */
 
 :root
 {
@@ -31,6 +29,145 @@ body
     --main-badge-colour: #2f84a0;
     --button-main-colour: #62567D;
 }
+
+/* Data colours */
+
+[data-colour="red"] {
+    background-color: red;
+}
+[data-colour="orange"] {
+    background-color: orange;
+}
+[data-colour="green"] {
+    background-color: green;
+}
+
+
+/* Reused custom styles */
+.content-container
+{
+    width: 100%;
+    height: 85vh;
+    background-color: #E9ECEF;
+}
+
+.card-styles
+{
+    display: block;
+    width: 90%;
+    min-height: 340px;
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: -2px 5px 10px grey ;
+}
+
+.badge-styles
+{
+    padding: 5px 10px;
+    background-color: #2e8f72;
+    display: inline-block;
+    color: white;
+    border-radius: 20px;
+    min-width: 60px;
+    text-align: center;
+}
+
+.button-styles
+{
+    display: inline-block;
+    background-color: var(--main-bg-colour);
+    border-radius: 5px;
+    padding: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.button-styles:hover
+{
+    color: white;
+    background-color: var(--main-bg-colour-hover);
+}
+
+.button-styles a:hover
+{
+    color: white;
+}
+
+.back-styles
+{
+    margin-top: 10px;
+    margin-left: 20px;
+    display: inline-block;
+    background-color: var(--main-bg-colour);
+    border-radius: 5px;
+    padding: 5px 20px 5px 20px;
+    color: white;
+    cursor: pointer;
+    align-self: flex-start;
+}
+
+.delete-button
+{
+    background-color: var(--delete-colour);
+}
+
+.delete-button:hover
+{
+    background-color: var(--delete-colour-hover);
+}
+
+.button-spacing
+{
+    margin-left: 20px;
+}
+
+.label-styles
+{
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: var(--main-bg-colour);
+}
+
+.badge-styles-main
+{
+    padding: 8px;
+    background-color: var(--main-badge-colour);
+    display: inline-block;
+    color: white;
+    max-width: 15ch;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    border-radius: 20px;
+    min-width: 100px;
+    text-align: center;
+}
+
+.custom-filter
+{
+    border: 3px solid var(--main-bg-colour);
+    border-radius: 5px;
+    width: 100px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-inline: 2px;
+}
+
+a
+{
+    color: white;
+    text-decoration: none;
+}
+
+.user-buttons
+{
+    display: flex;
+    align-items: center;
+    height: 100px;
+}
+
 
 /* Navbar */
 .navbar
@@ -72,7 +209,6 @@ body
     margin-top: 20px;
 }
 
-
 /* OffCanvas Nav */
 .offcanvas
 {
@@ -103,10 +239,6 @@ body
     
 }
 
-.side-bar-nav
-{
-    display: none;
-}
 /* nav side bar styling */
 .nav-col
 {
@@ -116,6 +248,12 @@ body
     flex-direction: column;
     justify-content: space-between;
 }
+
+.side-bar-nav
+{
+    display: none;
+}
+
 
 /* Viewing Bugs section */
 .filterContainer
@@ -188,15 +326,6 @@ body
     height: 20px;
 }
 
-[data-colour="red"] {
-    background-color: red;
-}
-[data-colour="orange"] {
-    background-color: orange;
-}
-[data-colour="green"] {
-    background-color: green;
-}
 
 .card-heading
 {
@@ -237,6 +366,7 @@ body
     overflow: hidden;
 }
 
+
 /* form styling */
 .main-form-container
 {
@@ -262,7 +392,6 @@ body
     padding-bottom: 10px;
     
 }
-
 
 .custom-input
 {
@@ -325,8 +454,6 @@ body
 }
 
 
-
-
 /* profile  */
 .info-style-header
 {
@@ -366,145 +493,8 @@ body
     overflow-y: hidden;
 }
 
-
-
-/* Reused custom styles */
-.content-container
-{
-    width: 100%;
-    height: 85vh;
-    background-color: #E9ECEF;
-}
-
-
-
-.error-container
-{
-    width: 100%;
-    height: 85vh;
-    background-color: #fff;
-}
-
-.card-styles
-{
-    display: block;
-    width: 90%;
-    min-height: 340px;
-    margin-top: 20px;
-    background-color: white;
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: -2px 5px 10px grey ;
-}
-
-.badge-styles
-{
-    padding: 5px 10px;
-    background-color: #2e8f72;
-    display: inline-block;
-    color: white;
-    border-radius: 20px;
-    min-width: 60px;
-    text-align: center;
-}
-
-.button-styles
-{
-    display: inline-block;
-    background-color: var(--main-bg-colour);
-    border-radius: 5px;
-    padding: 5px;
-    color: white;
-    cursor: pointer;
-}
-
-.button-styles:hover
-{
-    color: white;
-    background-color: var(--main-bg-colour-hover);
-}
-
-.button-styles a:hover
-{
-    color: white;
-}
-
-.back-styles
-{
-    margin-top: 10px;
-    margin-left: 20px;
-    display: inline-block;
-    background-color: var(--main-bg-colour);
-    border-radius: 5px;
-    padding: 5px 20px 5px 20px;
-    color: white;
-    cursor: pointer;
-    align-self: flex-start;
-}
-
-
-.delete-button
-{
-    background-color: var(--delete-colour);
-}
-
-.delete-button:hover
-{
-    background-color: var(--delete-colour-hover);
-}
-
-.button-spacing
-{
-    margin-left: 20px;
-}
-
-.label-styles
-{
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: var(--main-bg-colour);
-}
-
-.badge-styles-main
-{
-    padding: 8px;
-    background-color: var(--main-badge-colour);
-    display: inline-block;
-    color: white;
-    max-width: 15ch;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    border-radius: 20px;
-    min-width: 100px;
-    text-align: center;
-}
-
-.custom-filter
-{
-    border: 3px solid var(--main-bg-colour);
-    border-radius: 5px;
-    width: 100px;
-    margin-bottom: 20px;
-    margin-top: 10px;
-    margin-inline: 2px;
-}
-
-a
-{
-    color: white;
-    text-decoration: none;
-}
-
-.user-buttons
-{
-    display: flex;
-    align-items: center;
-    height: 100px;
-}
-
-
 /* footer */
+
 footer
 {
     height: 5vh;
@@ -517,9 +507,8 @@ footer
     color: white;
 }
 
-
-
 /* login */
+
 .plain-navbar
 {
     height: 10vh;
@@ -592,6 +581,8 @@ footer
     font-weight: bold;
 }
 
+/* Error styles */
+
 .error-message
 {
     color: #fff;
@@ -623,6 +614,9 @@ footer
 
 .error-container
 {
+    width: 100%;
+    height: 85vh;
+    background-color: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -651,7 +645,7 @@ footer
 
 
 /* Media Query */
-
+/* Tablet */
 @media only screen and (min-width: 600px) {
     
     /* Viewing Bugs section at 600px */
@@ -754,100 +748,102 @@ footer
         max-width: 40%;
         margin-inline: auto;
     }
-
-
-
   }
 
+   /* Laptop */
+   @media screen and (min-device-width: 1200px) and (max-device-width: 2000px)
+   {
+    /* Navbar 1200px */
+     .navbar-toggler
+     {
+         display: none;
+     }
+ 
+     .content-container
+     {
+         max-width: 75%;
+         justify-self: center;
+     }
+ 
+     .side-bar-nav
+     {
+         padding-top: 6rem;
+         background-color: #144134;
+         max-width: 256px;
+         width: 100%;
+         display: flex;
+         justify-self: flex-start;
+     }
+ 
+     .nav-link-container
+     {
+         padding-right: 20px;
+         justify-content: center;
+     }
+ 
+     .nav-links
+     {
+         width: 100%;
+     }
+ 
+     .navbar
+     {
+         padding-inline: 20px;
+     }
 
-  /* Laptop */
-  @media screen and (min-device-width: 1200px) and (max-device-width: 2000px)
-  {
+     /* users and bugs 1200px */
+ 
+     .user-buttons
+     {
+         max-width: 50%;
+         justify-content: space-around;
+     }
+ 
+     .bug-buttons
+     {
+         max-width: 65%;
+         margin-inline: auto ;
+     }
+ 
+     .filterContainer form
+     {
+         max-width: 25%;
+     }
+ 
+     .back-styles
+     {
+        margin-left: 0;
+     }
+ 
+     .card-styles
+     {
+         max-width: 500px;
+     }
+ 
+     .levels-container
+     {
+         margin-inline: auto;
+     }
+
+     /* Login 1200px */
+ 
+     .login
+     {
+         width: 40%;
+     }
+ 
+     .custom-input-login
+     {
+         width: 400px;
+         padding-left: 10px;
+     }
+   }
+
    
-    .navbar-toggler
-    {
-        display: none;
-    }
-
-    .content-container
-    {
-        max-width: 75%;
-        justify-self: center;
-    }
-
-    .side-bar-nav
-    {
-        padding-top: 6rem;
-        background-color: #144134;
-        max-width: 256px;
-        width: 100%;
-        display: flex;
-        justify-self: flex-start;
-    }
-
-    .nav-link-container
-    {
-        padding-right: 20px;
-        justify-content: center;
-    }
-
-    .nav-links
-    {
-        width: 100%;
-    }
-
-    .navbar
-    {
-        padding-inline: 20px;
-    }
-
-    .user-buttons
-    {
-        max-width: 50%;
-        justify-content: space-around;
-    }
-
-    .bug-buttons
-    {
-        max-width: 65%;
-        margin-inline: auto ;
-    }
-
-    .filterContainer form
-    {
-        max-width: 25%;
-    }
-
-    .back-styles
-    {
-       margin-left: 0;
-    }
-
-    .card-styles
-    {
-        max-width: 500px;
-    }
-
-    .levels-container
-    {
-        margin-inline: auto;
-    }
-
-    .login
-    {
-        width: 40%;
-    }
-
-    .custom-input-login
-    {
-        width: 400px;
-        padding-left: 10px;
-    }
-  }
-
    /* 4k Screen and TV */
    @media screen and (min-device-width: 2000px)
    {
+    /* Navbar 2000px */
     .navbar-toggler
     {
         display: none;
@@ -885,6 +881,7 @@ footer
         padding-inline: 20px;
     }
 
+    /* users and bugs 2000px */
     .user-buttons
     {
         max-width: 50%;
@@ -917,6 +914,8 @@ footer
         margin-inline: auto;
     }
 
+    /* Login 2000px */
+
     .login
     {
         width: 40%;
@@ -929,79 +928,3 @@ footer
     }
 
    }
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

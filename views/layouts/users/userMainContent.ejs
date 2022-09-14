@@ -1,0 +1,96 @@
+<div class="main-container">
+
+  <div class="side-bar-nav">
+      
+    <div class="nav-links">
+      <div class="nav-link-container">
+        <img src="/navbaricons/person.svg" alt="">
+        <a href="http://localhost:3000/user/profile/<%= currentUser.id %>"> Profile</a>
+      </div>
+      <% if(currentUser.role === 'Admin' || currentUser.role === 'Super-Admin'  ) { %>
+      <div class="nav-link-container">
+        <img src="/navbaricons/users.svg" alt="">
+        <a href="http://localhost:3000/user/">View Users</a>
+      </div>
+      <div class="nav-link-container">
+        <img src="/navbaricons/createUsers.svg" alt="">
+        <a href="http://localhost:3000/user/create/<%= currentUser.id %>">Create Users</a>
+      </div>
+      <% }%>
+      <div class="nav-link-container">
+        <img src="/navbaricons/viewBugs.svg" alt="">
+        <a href="http://localhost:3000/bug/">View Bugs</a>
+      </div>
+      <div class="nav-link-container">
+        <img src="/navbaricons/createBugs.svg" alt="">
+        <a href="http://localhost:3000/bug/create/<%= currentUser.id %>">Create Bugs</a>
+      </div>
+      <div class="nav-link-container">
+        <img src="/navbaricons/logout.svg" alt="">
+        <a href="http://localhost:3000/user/logout">Log Out</a>
+      </div>
+    </div>
+  </div>
+
+<div class="container-fluid content-container">
+    <div class="row">
+<div class="col">
+
+
+                  
+    <div class="filterContainer">
+      <form action="http://localhost:3000/user/filter/" id="bugForm">
+        <label for="filter"><img src="/filter.svg" alt=""></label>
+        <select class="custom-filter" id="filter" name="filterlist">
+          <option value="allUsers">All Users</option>
+          <option value="users">Users</option>
+          <option value="admins">Admins</option>
+        </select>
+        <label for="sort"><img src="/sort.svg" alt=""></label>
+        <select class="custom-filter" id="sort" name="sortlist">
+          <option value="none">None</option>
+          <option value="name">Name</option>
+          <option value="date">Date</option>
+          <option value="role">Role</option>
+        </select>
+          <input class="button-styles" type="submit">
+        </form>
+    </div>
+    <div class="bugsContainer">
+        <% if(typeof message !== 'undefined'){ %>
+          <div class="error-message-form"><%= message %></div> 
+        <% } %>
+        <% users.forEach(user => { %>
+        <div class="card-styles card-styles-user">
+           <h3 class="card-heading"><%= user.fname %> <%= user.lname %> </h3>
+           <div class="name-email-user">
+           <b><p><i class="bi bi-person-circle"></i> <%= user.title %></p></b>
+           <b><p><i class="bi bi-envelope"></i> <%= user.email %></p></b>
+          </div>
+           <p class="badge-styles"><i class="bi bi-person"> </i><%= user.role %></p>
+           <b><p><i class="bi bi-calendar3"> </i>  <%= user.dateCreated.toLocaleDateString('en-us', {year: 'numeric', month: 'long', day: 'numeric'}) %></p></b>
+           <% if(user.id !== currentUser.id && currentUser.role === 'Super-Admin'){ %>
+           <div class="user-buttons">
+           <button class="button-styles"><a href="http://localhost:3000/user/update/<%=user._id%>"><i class="bi bi-pencil"></i> Edit</a></button>
+           <form action="http://localhost:3000/user/delete/<%=user._id%>?_method=Delete" method="post">
+            <button class="button-styles delete-button button-spacing" type="submit"><i class="bi bi-trash"></i> Delete</button>
+           </form>
+           </div>
+           <% } else if(currentUser.role === 'Admin' && user.role === 'User' )  { %>
+            <div class="user-buttons">
+              <button class="button-styles"><a href="http://localhost:3000/user/update/<%=user._id%>"><i class="bi bi-pencil"></i> Edit</a></button>
+              <form action="http://localhost:3000/user/delete/<%=user._id%>?_method=Delete" method="post">
+               <button class="button-styles delete-button button-spacing" type="submit"><i class="bi bi-trash"></i> Delete</button>
+              </form>
+              </div>
+              <% } %>
+        </div>
+         <% }) %>
+    </div>
+
+    </div>
+
+    </div>
+    </div>
+
+    </div>

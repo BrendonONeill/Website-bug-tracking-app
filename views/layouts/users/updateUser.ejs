@@ -1,0 +1,89 @@
+<div class="main-container">
+
+    <div class="side-bar-nav">
+        
+      <div class="nav-links">
+        <div class="nav-link-container">
+          <img src="/navbaricons/person.svg" alt="">
+          <a href="http://localhost:3000/user/profile/<%= currentUser.id %>"> Profile</a>
+        </div>
+        <% if(currentUser.role === 'Admin' || currentUser.role === 'Super-Admin'  ) { %>
+        <div class="nav-link-container">
+          <img src="/navbaricons/users.svg" alt="">
+          <a href="http://localhost:3000/user/">View Users</a>
+        </div>
+        <div class="nav-link-container">
+          <img src="/navbaricons/createUsers.svg" alt="">
+          <a href="http://localhost:3000/user/create/<%= currentUser.id %>">Create Users</a>
+        </div>
+        <% }%>
+        <div class="nav-link-container">
+          <img src="/navbaricons/viewBugs.svg" alt="">
+          <a href="http://localhost:3000/bug/">View Bugs</a>
+        </div>
+        <div class="nav-link-container">
+          <img src="/navbaricons/createBugs.svg" alt="">
+          <a href="http://localhost:3000/bug/create/<%= currentUser.id %>">Create Bugs</a>
+        </div>
+        <div class="nav-link-container">
+          <img src="/navbaricons/logout.svg" alt="">
+          <a href="http://localhost:3000/user/logout">Log Out</a>
+        </div>
+      </div>
+    </div>
+
+<div class="container-fluid content-container">
+    <div class="row">
+        
+        <div class="col">
+
+
+          
+          
+            <div class="form-Conatiner">
+                
+
+                <form action="http://localhost:3000/user/update/<%= updateUser.id %>?_method=PUT" method="POST">
+                    <label class="label-styles" for="firstname">First Name</label>
+                    <input class="custom-input custom-input-padding" type="text" name="fname" value="<%= updateUser.fname%>">
+                    <label class="label-styles" for="">Last Name</label>
+                    <input class="custom-input custom-input-padding" type="text" name="lname" value="<%= updateUser.lname%>">
+                    <label class="label-styles" for="">Email</label>
+                    <input class="custom-input custom-input-padding" type="email" name="email" value="<%= updateUser.email%>">
+                    <p class="form-error-text" style="color: red;">*Leave password's fields empty if you don't want to change the password.</p>
+                    <label class="label-styles" for="">Password</label>
+                    <input class="custom-input custom-input-padding" type="text" name="password" >
+                    <label class="label-styles"  for="">PasswordConfirm</label>
+                    <input class="custom-input custom-input-padding" type="text" name="passwordConfirm">
+                    <label class="label-styles" for="role">Role</label>
+                    <select class="custom-input custom-input-padding" name="role" id="role">
+                        <option value="Admin">Admin</option>
+                        <option value="User" selected>User</option>
+                    </select>
+                    <label class="label-styles" for="title">Title</label>
+                    <input class="custom-input custom-input-padding" type="text" name="title" value="<%= updateUser.title%>">
+                    <button class="button-styles" type="submit">Submit</button>
+                    <button class="button-styles delete-button button-spacing"><a href="http://localhost:3000/user">Cancel</a></button>
+                </form>
+                
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+</div>
+
+</div>

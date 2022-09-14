@@ -1,0 +1,114 @@
+<div class="main-container">
+
+<div class="side-bar-nav">
+    
+  <div class="nav-links">
+    <div class="nav-link-container">
+      <img src="/navbaricons/person.svg" alt="">
+      <a href="http://localhost:3000/user/profile/<%= currentUser.id %>"> Profile</a>
+    </div>
+    <% if(currentUser.role === 'Admin' || currentUser.role === 'Super-Admin'  ) { %>
+    <div class="nav-link-container">
+      <img src="/navbaricons/users.svg" alt="">
+      <a href="http://localhost:3000/user/">View Users</a>
+    </div>
+    <div class="nav-link-container">
+      <img src="/navbaricons/createUsers.svg" alt="">
+      <a href="http://localhost:3000/user/create/<%= currentUser.id %>">Create Users</a>
+    </div>
+    <% }%>
+    <div class="nav-link-container">
+      <img src="/navbaricons/viewBugs.svg" alt="">
+      <a href="http://localhost:3000/bug/">View Bugs</a>
+    </div>
+    <div class="nav-link-container">
+      <img src="/navbaricons/createBugs.svg" alt="">
+      <a href="http://localhost:3000/bug/create/<%= currentUser.id %>">Create Bugs</a>
+    </div>
+    <div class="nav-link-container">
+      <img src="/navbaricons/logout.svg" alt="">
+      <a href="http://localhost:3000/user/logout">Log Out</a>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container-fluid content-container">
+    <div class="row">
+      <div class="col">
+
+        <div class="filterContainer">
+          <form action="http://localhost:3000/bug/filter/" id="bugForm">
+          <label for="filter"><img src="/filter.svg" alt="filter"></label>
+          <select class="custom-filter filter-text-space" id="filter" name="filterlist">
+            <option value="userbug">User Bugs</option>
+            <option value="public" selected>Public Bugs</option>
+            <% if(currentUser.role === "Super-Admin") { %>
+            <option value="allbugs" >All Bugs</option>
+            <% } %>
+          </select>
+          <label for="sort"><img src="/sort.svg" alt="sort"> </label>
+          <select class="custom-filter" id="sort" name="sortlist">
+            <option value="none">None</option>
+            <option value="importance">Importance</option>
+            <option value="bugName">Bug-Name</option>
+            <option value="date">Date</option>
+          </select>
+            <input class="button-styles" type="submit">
+          </form>
+        </div>
+
+        <div class="bugsContainer">
+            <div class="levels-container">
+              <h4>Levels of Importance</h3>
+            <div class="information-card">
+              <div class="level-help">
+                <p>Low</p>
+                <div class="level-help-circle" data-colour="green"></div>
+              </div>
+              <div class="level-help">
+                <p>Medium</p>
+                <div class="level-help-circle" data-colour="orange"></div>
+              </div>
+              <div class="level-help">
+                <p>High</p>
+                <div class="level-help-circle" data-colour="red"></div>
+              </div>
+            </div>
+          </div>
+            <% bugs.forEach(bug => { %>
+            <div class="card-styles">
+              <div class="bug-information">
+                <div class="card-alert" style="<%= bug.bugImportance === 'low' ? 'background-color: green' : bug.bugImportance === 'medium' ? 'background-color: orange' : bug.bugImportance === 'high' ? 'background-color: rgb(192, 0, 0);' : '' %>">
+                
+                </div>
+               <h3 class="card-heading heading-card-style"><%= bug.bugName %></h3>
+               
+               <p class="badge-styles-main"><i class="bi bi-folder"></i> <%= bug.bugProject %></p>
+               <p class="badge-styles-main"><i class="bi bi-code"></i> <%= bug.bugCode %></p>
+            
+              <div class="person-date">
+                <h4><i class="bi bi-person"></i>  <%= bug.bugUserId.fname %> <%= bug.bugUserId.lname[0] %></h4>
+                <b><h4><i class="bi bi-calendar3"></i>  <%= bug.dateBugCreated.toLocaleDateString('en-us', {year: 'numeric', month: 'long', day: 'numeric'}) %></h4></b>
+               </div>
+              </div>
+
+               <div class="bug-buttons">
+               <button class="button-styles"><a href="http://localhost:3000/bug/bug-details/<%=bug._id%>"><i class="bi bi-info"></i> More Detail</a></button>
+               <% if(bug.bugUserId.id === currentUser.id) { %>
+               <button class="button-styles"><a href="http://localhost:3000/bug/update/<%=bug._id%>"><i class="bi bi-pencil"></i>  Edit</a></button>
+               <form class="card-button" action="http://localhost:3000/bug/delete/<%=bug._id%>?_method=Delete" method="post">
+                <button class="button-styles delete-button" type="submit"><i class="bi bi-trash"></i> Delete</button>
+               </form>
+               <% }%>
+              </div>
+            </div>
+             <% }) %>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>

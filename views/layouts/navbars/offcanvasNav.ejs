@@ -1,0 +1,41 @@
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+
+    <div class="offcanvas-header">
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+
+      <div class="profile">
+        <div class="nav-link-container">
+          <img src="/navbaricons/person.svg" alt="">
+          <a href="http://localhost:3000/user/profile/<%= currentUser.id %>"> Profile</a>
+        </div>
+      </div>
+
+      <div class="nav-links">
+        <% if(currentUser.role === 'Admin' || currentUser.role === 'Super-Admin'  ) { %>
+        <div class="nav-link-container">
+          <img src="/navbaricons/users.svg" alt="">
+          <a href="http://localhost:3000/user/">View Users</a>
+        </div>
+        <div class="nav-link-container">
+          <img src="/navbaricons/createUsers.svg" alt="">
+          <a href="http://localhost:3000/user/create/<%= currentUser.id %>">Create Users</a>
+        </div>
+        <% }%>
+        <div class="nav-link-container">
+          <img src="/navbaricons/viewBugs.svg" alt="">
+          <a href="http://localhost:3000/bug/">View Bugs</a>
+        </div>
+        <div class="nav-link-container">
+          <img src="/navbaricons/createBugs.svg" alt="">
+          <a href="http://localhost:3000/bug/create/<%= currentUser.id %>">Create Bugs</a>
+        </div>
+        <div class="nav-link-container">
+          <img src="/navbaricons/logout.svg" alt="">
+          <a href="http://localhost:3000/user/logout">Log Out</a>
+        </div>
+      </div>
+    </div>
+    </div>

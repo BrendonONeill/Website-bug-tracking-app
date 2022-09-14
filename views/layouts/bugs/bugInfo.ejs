@@ -1,0 +1,77 @@
+<div class="main-container">
+
+    <div class="side-bar-nav">
+        
+      <div class="nav-links">
+        <div class="nav-link-container">
+          <img src="/navbaricons/person.svg" alt="">
+          <a href="http://localhost:3000/user/profile/<%= currentUser.id %>"> Profile</a>
+        </div>
+        <% if(currentUser.role === 'Admin' || currentUser.role === 'Super-Admin'  ) { %>
+        <div class="nav-link-container">
+          <img src="/navbaricons/users.svg" alt="">
+          <a href="http://localhost:3000/user/">View Users</a>
+        </div>
+        <div class="nav-link-container">
+          <img src="/navbaricons/createUsers.svg" alt="">
+          <a href="http://localhost:3000/user/create/<%= currentUser.id %>">Create Users</a>
+        </div>
+        <% }%>
+        <div class="nav-link-container">
+          <img src="/navbaricons/viewBugs.svg" alt="">
+          <a href="http://localhost:3000/bug/">View Bugs</a>
+        </div>
+        <div class="nav-link-container">
+          <img src="/navbaricons/createBugs.svg" alt="">
+          <a href="http://localhost:3000/bug/create/<%= currentUser.id %>">Create Bugs</a>
+        </div>
+        <div class="nav-link-container">
+          <img src="/navbaricons/logout.svg" alt="">
+          <a href="http://localhost:3000/user/logout">Log Out</a>
+        </div>
+      </div>
+    </div>
+
+
+
+<div class="container-fluid content-container">
+    <div class="row">
+        <div class="col">
+
+
+          
+            
+            <div class="card-container">
+                <button class="back-styles"><a href="http://localhost:3000/bug"><i class="bi bi-arrow-left"></i></a></button>
+                <div class="info-style">
+                <div class="info-section-style">
+                    <h2 class="info-bug-head">Bug Name</h2>
+                    <p><%= bug.bugName %></p>
+                </div>
+                <div class="info-section-style">
+                    <h2 class="info-bug-head">Creator</h2>
+                    <p><%= user.fname %> <%= user.lname %></p>
+                </div>
+                <div class="info-section-style">
+                    <h2 class="info-bug-head">Description</h2>
+                    <p><%= bug.bugDes %></p>
+                </div>
+                <div class="info-section-style">
+                    <h2 class="info-bug-head">Project</h2>
+                    <p><%= bug.bugProject %></p>
+               </div>
+               <div class="info-section-style">
+                    <h2 class="info-bug-head">Code</h2>
+                    <p><%= bug.bugCode %></p>
+               </div>
+               <div class="info-section-style">
+                    <h2 class="info-bug-head">Date Created</h2>
+                    <p><%= bug.dateBugCreated.toLocaleDateString('en-us', {year: 'numeric', month: 'long', day: 'numeric'}) %></p>
+               </div>
+               </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>

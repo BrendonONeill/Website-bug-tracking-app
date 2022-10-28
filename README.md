@@ -18,4 +18,9 @@ Fixing Bugs
 Cleaning up error handling
 and sorting out UI Issues
 
+### Delayed update reason
+
+Having problems with auth and connecting to the mongodb where my connection takes 30 seconds just to connect on my 1GB internet.
+need to research more on the matter hopefully by monday I have better connection to fix up my auth.
+
 

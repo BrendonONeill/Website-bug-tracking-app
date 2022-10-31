@@ -7,20 +7,17 @@ In this project I learnt alot about backend and node js as well as some authenti
 ## Potential future features
 I hope to be able to upload images for bugs to help the users to understand the problem of a bug
 User's can comment on other users bugs to ask questions, supply ideas or explain bug. 
-I also want to add more authentication as I learn more about back end where the user can reset password without admin
+I also want to add more authentication as I learn more about back end where the user can reset password without admin.
+Password reset using emails. 
 
 
 ## deployment
 This is not hosted yet as im still work out some bugs and UI issues
 
 ### Working on
-Fixing Bugs
-Cleaning up error handling
-and sorting out UI Issues
+Fixing Bugs.
+Cleaning up old CSS.
+cleaning up old code and converting to cleaner styles of writing out middlewares.
 
-### Delayed update reason
-
-Having problems with auth and connecting to the mongodb where my connection takes 30 seconds just to connect on my 1GB internet.
-need to research more on the matter hopefully by monday I have better connection to fix up my auth.
 
 

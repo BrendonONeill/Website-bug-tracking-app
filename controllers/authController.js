@@ -78,8 +78,10 @@ exports.loginedCheck = async(req, res, next) => {
     try{
         //Check if users has a token
         let token
+        console.log("login test 1")
         if(req.cookies.jwt)
         {
+            console.log("login test 2")
             token = req.cookies.jwt;
         }
         if(!token)
@@ -87,12 +89,15 @@ exports.loginedCheck = async(req, res, next) => {
             throw new SyntaxError("access denided") 
         }
         //Verify the users token
+        console.log("login test 3")
         const codeVerify = await promisify(jwt.verify)(token, process.env.JWT_PASSWORD)
+        
+        console.log("login test 4")
         // Check if user still in database
         const userInDataBase = await User.findById(codeVerify.id);
         if(!userInDataBase)
         {
-            throw new SyntaxError("access denided") 
+            throw new SyntaxError("can you not read") 
         }
         req.currentUser = req.cookies.user
         req.LogInUser = userInDataBase
@@ -100,6 +105,16 @@ exports.loginedCheck = async(req, res, next) => {
     }
     catch(err)
     {
+        err.message = "testing"
+        res.cookie('jwt', 'accessdenided', {
+            expires: new Date(Date.now() + 10 * 1000),
+            httpOnly: true
+          });
+        res.cookie('user', 'accessdenided', {
+            expires: new Date(Date.now() + 10 * 1000),
+            httpOnly: true
+          });
+        
         next(err)
     }
 }

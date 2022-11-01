@@ -57,7 +57,7 @@ exports.createBug = async (req, res, next) => {
             req.body.bugPrivate = true;
         }
         await Bug.create(req.body);
-        res.status(201).redirect('http://localhost:3000/bug');
+        res.status(201).redirect('https://bug-tracker.onrender.com/bug');
     }
     catch(err){
         err.message = "This page doesn't exist"
@@ -116,7 +116,7 @@ exports.updateBug = async (req, res, next) => {
         }
         const bug = await Bug.findByIdAndUpdate(req.params.id,req.body, {new:true});
         await bug.save()
-        res.status(201).redirect('http://localhost:3000/bug');
+        res.status(201).redirect('https://bug-tracker.onrender.com/bug');
     }
     catch(err){
         err.message = "This page doesn't exist"
@@ -129,7 +129,7 @@ exports.deleteBug = async (req, res, next) => {
     try {
         console.log("Test Bug Deleted")
         await Bug.findByIdAndDelete(req.params.id);
-        res.status(201).redirect('http://localhost:3000/bug');
+        res.status(201).redirect('https://bug-tracker.onrender.com/bug');
     }
     catch(err){
         err.message = "This page doesn't exist"

@@ -23,7 +23,7 @@ exports.loginIn = async (req, res, next) => {
          throw new SyntaxError("Email or Password not valid") 
      }
      createCookieToken(user, 200, res)
-     console.log('token created')
+    
      next()
     }
     catch(err)

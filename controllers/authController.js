@@ -61,8 +61,7 @@ const createCookieToken = (user, statusCode, res) => {
       ),
       httpOnly: true
     };
-    //if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
-  
+    cookieOptions.secure = true;
     res.cookie('jwt', token, cookieOptions);
     res.cookie('user', `${user.fname}.${user.lname[0]}`,cookieOptions);
   

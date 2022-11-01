@@ -5,22 +5,23 @@
 In this project I learnt alot about backend and node js as well as some authentication using JWT and cookies. This project gave me a good idea of how to use node.js as well as many packages to help route or add midlleware for protection. This have given me an interest to learn more about backend development to help me understand the best practises to develope my front end to make it clear for the back end developer to connect their code to mine. With this project I used a bit of bootstrap as a struture but most of the CSS is showed me how much goes into writing custom css and how much time can be saved when designing for all screen resolutions.
 
 ## Potential future features
-I hope to be able to upload images for bugs to help the users to understand the problem of a bug.
-User's can comment on other users bugs to ask questions, supply ideas or explain bug. 
-I also want to add more authentication as I learn more about back end where the user can reset password without admin.
+I hope to be able to upload images for bugs to help the users to understand the problem of a bug. 
+User's can comment on other users bugs to ask questions, supply ideas or explain bug.  
+I also want to add more authentication as I learn more about back end where the user can reset password without admin.  
 Password reset using emails. 
 
 
 ## deployment
-Login Details:
-Email: User123@gmail.com Password: 1234goldfish
-https://bug-tracker.onrender.com/user/logout
+Login Details: 
+Email: User123@gmail.com Password: 1234goldfish 
+https://bug-tracker.onrender.com/user/logout 
 
 
 ### Working on
-Fixing Bugs.
-Cleaning up old CSS.
-cleaning up old code and converting to cleaner styles of writing out middlewares.
+Fixing Bugs. 
+Cleaning up old CSS. 
+cleaning up old code and converting to cleaner styles of writing out middlewares. 
+On phones / tablets the form pops out of the container when keyboard is active.  
 
 
 

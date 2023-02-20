@@ -46,7 +46,7 @@ exports.createUser = async (req, res, next) => {
       role: req.body.role,
       title: req.body.title,
     });
-    res.status(201).redirect("https://bug-tracker.onrender.com/user");
+    res.status(201).redirect("http://localhost:3000/user");
   } catch (err) {
     if (
       err.message.startsWith("E11000") ||
@@ -89,7 +89,7 @@ exports.updateUserData = async (req, res, next) => {
         { new: true }
       ).select("+password");
       await user.save({ validateBeforeSave: false });
-      res.status(201).redirect("https://bug-tracker.onrender.com/user");
+      res.status(201).redirect("http://localhost:3000/user");
     } else if (req.body.password === req.body.passwordConfirm) {
       const user = await User.findByIdAndUpdate(
         req.params.id,
@@ -98,7 +98,7 @@ exports.updateUserData = async (req, res, next) => {
       ).select("+password");
 
       await user.save({ validateBeforeSave: true });
-      res.status(201).redirect("https://bug-tracker.onrender.com/user");
+      res.status(201).redirect("http://localhost:3000/user");
     } else if (req.body.password !== req.body.passwordConfirm) {
       throw new SyntaxError("can you not read");
     }
@@ -111,7 +111,7 @@ exports.updateUserData = async (req, res, next) => {
 exports.deleteUser = async (req, res) => {
   try {
     await User.findByIdAndDelete(req.params.id);
-    res.status(201).redirect("https://bug-tracker.onrender.com/user");
+    res.status(201).redirect("http://localhost:3000/user");
   } catch (err) {
     err.message = "This page doesn't exist";
     next(err);
@@ -191,5 +191,61 @@ exports.filterAndSort = async (req, res) => {
   } catch (err) {
     err.message = "This page doesn't exist";
     next(err);
+  }
+};
+
+// Could bes test content for filtering an stuff
+
+exports.getOnlyAdmin = async (req, res) => {
+  try {
+    console.log("Test 2 checking....");
+    const currentUser = req.LogInUser;
+    const users = await User.find().where({ role: "admin" });
+
+    res.status(201).render("users/index", {
+      users,
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "Failed",
+      message: err,
+    });
+  }
+};
+
+exports.getOnlyUser = async (req, res) => {
+  try {
+    console.log("Test 3 checking....");
+    const currentUser = req.LogInUser;
+    const users = await User.find().where({ role: "user" });
+
+    res.status(201).render("users/index", {
+      users,
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "Failed",
+      message: err,
+    });
+  }
+};
+
+exports.getUser = async (req, res) => {
+  try {
+    console.log("Test 4 checking....");
+    const currentUser = req.LogInUser;
+    const user = await User.findById(req.params.id);
+
+    res.status(201).json({
+      status: "success",
+      data: {
+        user,
+      },
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "Failed",
+      message: err,
+    });
   }
 };

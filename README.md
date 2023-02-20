@@ -18,11 +18,7 @@ https://bug-tracker.onrender.com/user/logout
 
 
 ### Working on
-Removing Console.logs 
-Fixing Bugs.  
-Cleaning up old CSS.  
-cleaning up old code and converting to cleaner styles of writing out middlewares. 
-On phones / tablets the form pops out of the container when keyboard is active.  
+Cleaning up backend code and cleaning up error handling. 
 
 
 

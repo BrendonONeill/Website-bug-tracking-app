@@ -85,11 +85,11 @@ exports.loginedCheck = async (req, res, next) => {
     err.message = "testing";
     res.cookie("jwt", "accessdenided", {
       expires: new Date(Date.now() + 10 * 1000),
-      //httpOnly: true,
+      httpOnly: true,
     });
     res.cookie("user", "accessdenided", {
       expires: new Date(Date.now() + 10 * 1000),
-      //httpOnly: true,
+      httpOnly: true,
     });
 
     next(err);
@@ -100,11 +100,11 @@ exports.loginedCheck = async (req, res, next) => {
 exports.logout = (req, res) => {
   res.cookie("jwt", "loggedout", {
     expires: new Date(Date.now() + 10 * 1000),
-    //httpOnly: true,
+    httpOnly: true,
   });
   res.cookie("user", "loggedout", {
     expires: new Date(Date.now() + 10 * 1000),
-    //httpOnly: true,
+    httpOnly: true,
   });
   res.status(200).render("login/login");
 };

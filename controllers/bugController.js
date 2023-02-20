@@ -45,7 +45,7 @@ exports.createBug = async (req, res, next) => {
       req.body.bugPrivate = true;
     }
     await Bug.create(req.body);
-    res.status(201).redirect("https://bug-tracker.onrender.com/bug");
+    res.status(201).redirect("http://localhost:3000/bug");
   } catch (err) {
     err.message = "This page doesn't exist";
     next(err);
@@ -102,7 +102,7 @@ exports.updateBug = async (req, res, next) => {
       new: true,
     });
     await bug.save();
-    res.status(201).redirect("https://bug-tracker.onrender.com/bug");
+    res.status(201).redirect("http://localhost:3000/bug");
   } catch (err) {
     err.message = "This page doesn't exist";
     next(err);
@@ -113,7 +113,7 @@ exports.updateBug = async (req, res, next) => {
 exports.deleteBug = async (req, res, next) => {
   try {
     await Bug.findByIdAndDelete(req.params.id);
-    res.status(201).redirect("https://bug-tracker.onrender.com/bug");
+    res.status(201).redirect("http://localhost:3000/bug");
   } catch (err) {
     err.message = "This page doesn't exist";
     next(err);
@@ -203,5 +203,108 @@ exports.filterAndSort = async (req, res, next) => {
   } catch (err) {
     err.message = "This page doesn't exist";
     next(err);
+  }
+};
+
+// Look through this could mostly be test code
+
+exports.getAllBugs = async (req, res) => {
+  try {
+    const currentUser = req.LogInUser;
+    const bugs = await Bug.find();
+    console.log("Test 1 check.....");
+    res.status(201).json({
+      status: "success",
+      Bugs: bugs.length,
+      data: {
+        bugs,
+      },
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "Failed",
+      message: err,
+    });
+  }
+};
+
+exports.publicBugs = async (req, res) => {
+  try {
+    console.log("Test 5 check.....");
+    const currentUser = req.LogInUser;
+    const bugs = await Bug.find()
+      .where({ bugPrivate: false })
+      .populate("bugUserId");
+
+    res.status(201).render("bugs/index", {
+      bugs,
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "Failed",
+      message: err,
+    });
+  }
+};
+
+exports.UserBugs = async (req, res) => {
+  try {
+    console.log("Test 6 check.....");
+    const currentUser = req.LogInUser;
+    const bugs = await Bug.find()
+      .where({ bugUserId: req.params.id })
+      .populate("bugUserId");
+
+    res.status(201).render("bugs/index", {
+      bugs,
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "Failed",
+      message: err,
+    });
+  }
+};
+
+exports.filterAllBugs = async (req, res, next) => {
+  try {
+    console.log("Test 8 check.....");
+    const currentUser = req.LogInUser;
+    const bugs = await Bug.find().where({ bugPrivate: "true" });
+
+    res.status(201).json({
+      status: "success",
+      Bugs: bugs.length,
+      data: {
+        bugs,
+      },
+    });
+
+    next();
+  } catch (err) {
+    res.status(400).json({
+      status: "Failed",
+      message: err,
+    });
+  }
+};
+
+exports.getBug = async (req, res) => {
+  try {
+    console.log("Test 9 check.....");
+    const currentUser = req.LogInUser;
+    const bug = await Bug.findById(req.params.id);
+
+    res.status(201).json({
+      status: "success",
+      data: {
+        bug,
+      },
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "Failed",
+      message: err,
+    });
   }
 };

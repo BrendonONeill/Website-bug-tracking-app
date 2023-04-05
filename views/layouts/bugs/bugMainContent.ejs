@@ -5,29 +5,29 @@
   <div class="nav-links">
     <div class="nav-link-container">
       <img src="/navbaricons/person.svg" alt="">
-      <a href="https://bug-tracker.onrender.com/user/profile/<%= currentUser.id %>"> Profile</a>
+      <a href="http://localhost:3000/user/profile/<%= currentUser.id %>"> Profile</a>
     </div>
     <% if(currentUser.role === 'Admin' || currentUser.role === 'Super-Admin'  ) { %>
     <div class="nav-link-container">
       <img src="/navbaricons/users.svg" alt="">
-      <a href="https://bug-tracker.onrender.com/user/">View Users</a>
+      <a href="http://localhost:3000/user/">View Users</a>
     </div>
     <div class="nav-link-container">
       <img src="/navbaricons/createUsers.svg" alt="">
-      <a href="https://bug-tracker.onrender.com/user/create/<%= currentUser.id %>">Create Users</a>
+      <a href="http://localhost:3000/user/create/<%= currentUser.id %>">Create Users</a>
     </div>
     <% }%>
     <div class="nav-link-container">
       <img src="/navbaricons/viewBugs.svg" alt="">
-      <a href="https://bug-tracker.onrender.com/bug/">View Bugs</a>
+      <a href="http://localhost:3000/bug/">View Bugs</a>
     </div>
     <div class="nav-link-container">
       <img src="/navbaricons/createBugs.svg" alt="">
-      <a href="https://bug-tracker.onrender.com/bug/create/<%= currentUser.id %>">Create Bugs</a>
+      <a href="http://localhost:3000/bug/create/<%= currentUser.id %>">Create Bugs</a>
     </div>
     <div class="nav-link-container">
       <img src="/navbaricons/logout.svg" alt="">
-      <a href="https://bug-tracker.onrender.com/user/logout">Log Out</a>
+      <a href="http://localhost:3000/user/logout">Log Out</a>
     </div>
   </div>
 </div>
@@ -39,7 +39,7 @@
       <div class="col">
 
         <div class="filterContainer">
-          <form action="https://bug-tracker.onrender.com/bug/filter/" id="bugForm">
+          <form action="http://localhost:3000/bug/filter/" id="bugForm">
           <label for="filter"><img src="/filter.svg" alt="filter"></label>
           <select class="custom-filter filter-text-space" id="filter" name="filterlist">
             <option value="userbug">User Bugs</option>
@@ -95,10 +95,10 @@
               </div>
 
                <div class="bug-buttons">
-               <button class="button-styles"><a href="https://bug-tracker.onrender.com/bug/bug-details/<%=bug._id%>"><i class="bi bi-info"></i> More Detail</a></button>
+               <button class="button-styles"><a href="http://localhost:3000/bug/bug-details/<%=bug._id%>"><i class="bi bi-info"></i> More Detail</a></button>
                <% if(bug.bugUserId.id === currentUser.id) { %>
-               <button class="button-styles"><a href="https://bug-tracker.onrender.com/bug/update/<%=bug._id%>"><i class="bi bi-pencil"></i>  Edit</a></button>
-               <form class="card-button" action="https://bug-tracker.onrender.com/bug/delete/<%=bug._id%>?_method=Delete" method="post">
+               <button class="button-styles"><a href="http://localhost:3000/bug/update/<%=bug._id%>"><i class="bi bi-pencil"></i>  Edit</a></button>
+               <form class="card-button" action="http://localhost:3000/bug/delete/<%=bug._id%>?_method=Delete" method="post">
                 <button class="button-styles delete-button" type="submit"><i class="bi bi-trash"></i> Delete</button>
                </form>
                <% }%>

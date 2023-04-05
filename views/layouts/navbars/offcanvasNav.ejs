@@ -9,7 +9,7 @@
       <div class="profile">
         <div class="nav-link-container">
           <img src="/navbaricons/person.svg" alt="">
-          <a href="https://bug-tracker.onrender.com/user/profile/<%= currentUser.id %>"> Profile</a>
+          <a href="http://localhost:3000/user/profile/<%= currentUser.id %>"> Profile</a>
         </div>
       </div>
 
@@ -17,24 +17,24 @@
         <% if(currentUser.role === 'Admin' || currentUser.role === 'Super-Admin'  ) { %>
         <div class="nav-link-container">
           <img src="/navbaricons/users.svg" alt="">
-          <a href="https://bug-tracker.onrender.com/user/">View Users</a>
+          <a href="http://localhost:3000/user/">View Users</a>
         </div>
         <div class="nav-link-container">
           <img src="/navbaricons/createUsers.svg" alt="">
-          <a href="https://bug-tracker.onrender.com/user/create/<%= currentUser.id %>">Create Users</a>
+          <a href="http://localhost:3000/user/create/<%= currentUser.id %>">Create Users</a>
         </div>
         <% }%>
         <div class="nav-link-container">
           <img src="/navbaricons/viewBugs.svg" alt="">
-          <a href="https://bug-tracker.onrender.com/bug/">View Bugs</a>
+          <a href="http://localhost:3000/bug/">View Bugs</a>
         </div>
         <div class="nav-link-container">
           <img src="/navbaricons/createBugs.svg" alt="">
-          <a href="https://bug-tracker.onrender.com/bug/create/<%= currentUser.id %>">Create Bugs</a>
+          <a href="http://localhost:3000/bug/create/<%= currentUser.id %>">Create Bugs</a>
         </div>
         <div class="nav-link-container">
           <img src="/navbaricons/logout.svg" alt="">
-          <a href="https://bug-tracker.onrender.com/user/logout">Log Out</a>
+          <a href="http://localhost:3000/user/logout">Log Out</a>
         </div>
       </div>
     </div>

@@ -19,6 +19,7 @@ https://bug-tracker.onrender.com/user/logout
 
 ### Working on
 Cleaning up backend code and cleaning up error handling. 
+On deployment lots of bugs are heappening compared to localhost need to investage. 
 
 
 

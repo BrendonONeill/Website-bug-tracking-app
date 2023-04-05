@@ -5,29 +5,29 @@
       <div class="nav-links">
         <div class="nav-link-container">
           <img src="/navbaricons/person.svg" alt="">
-          <a href="http://localhost:3000/user/profile/<%= currentUser.id %>"> Profile</a>
+          <a href="https://bug-tracker.onrender.com/user/profile/<%= currentUser.id %>"> Profile</a>
         </div>
         <% if(currentUser.role === 'Admin' || currentUser.role === 'Super-Admin'  ) { %>
         <div class="nav-link-container">
           <img src="/navbaricons/users.svg" alt="">
-          <a href="http://localhost:3000/user/">View Users</a>
+          <a href="https://bug-tracker.onrender.com/user/">View Users</a>
         </div>
         <div class="nav-link-container">
           <img src="/navbaricons/createUsers.svg" alt="">
-          <a href="http://localhost:3000/user/create/<%= currentUser.id %>">Create Users</a>
+          <a href="https://bug-tracker.onrender.com/user/create/<%= currentUser.id %>">Create Users</a>
         </div>
         <% }%>
         <div class="nav-link-container">
           <img src="/navbaricons/viewBugs.svg" alt="">
-          <a href="http://localhost:3000/bug/">View Bugs</a>
+          <a href="https://bug-tracker.onrender.com/bug/">View Bugs</a>
         </div>
         <div class="nav-link-container">
           <img src="/navbaricons/createBugs.svg" alt="">
-          <a href="http://localhost:3000/bug/create/<%= currentUser.id %>">Create Bugs</a>
+          <a href="https://bug-tracker.onrender.com/bug/create/<%= currentUser.id %>">Create Bugs</a>
         </div>
         <div class="nav-link-container">
           <img src="/navbaricons/logout.svg" alt="">
-          <a href="http://localhost:3000/user/logout">Log Out</a>
+          <a href="https://bug-tracker.onrender.com/user/logout">Log Out</a>
         </div>
       </div>
     </div>
@@ -45,7 +45,7 @@
                 <% if(typeof message !== 'undefined'){ %>
                     <div class="error-message-form"><%= message %></div> 
                     <% } %>
-                <form action="http://localhost:3000/user/create" method="post">
+                <form action="https://bug-tracker.onrender.com/user/create" method="post">
                     <label class="label-styles" for="">First Name</label>
                     <input class="custom-input custom-input-padding" type="text" name="fname" maxlength="20" required>
                     <label class="label-styles custom-input-padding" for="">Last Name</label>
@@ -64,7 +64,7 @@
                     <label class="label-styles" for="">Title</label>
                     <input class="custom-input custom-input-padding" type="text" name="title" maxlength="20" required>
                     <button class="button-styles" type="submit">Submit</button>
-                    <button class="button-styles delete-button button-spacing"><a href="http://localhost:3000/user">Cancel</a></button>
+                    <button class="button-styles delete-button button-spacing"><a href="https://bug-tracker.onrender.com/user">Cancel</a></button>
                 </form>
                 
             </div>

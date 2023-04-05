@@ -44,7 +44,7 @@ const createCookieToken = (user, statusCode, res) => {
   const token = signJWTToken(user._id);
   const cookieOptions = {
     expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
-    //httpOnly: true
+    httpOnly: true
   };
   cookieOptions.secure = true;
   res.cookie("jwt", token, cookieOptions);

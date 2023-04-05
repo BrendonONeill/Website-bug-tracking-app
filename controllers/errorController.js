@@ -27,7 +27,7 @@ exports.errorHandler = async (err, req, res, next) => {
         message: "This page doesn't exist, Please try again later.",
       })
     : err.message.startsWith("testing")
-    ? res.status(404).render("users/errorRelogin", {
+    ? res.status(404).render("users/errorReLogin", {
         message: "Please login to look at this Information",
       })
     : err.message.startsWith("This page doesn't exist")

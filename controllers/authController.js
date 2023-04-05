@@ -64,7 +64,7 @@ exports.loginedCheck = async (req, res, next) => {
       token = req.cookies.jwt;
     }
     if (!token) {
-      throw new SyntaxError("access denided");
+      throw new SyntaxError("access denied");
     }
     //Verify the users token
 
@@ -120,5 +120,15 @@ exports.levelOfLogin = (...admin) => {
     };
   } catch (err) {
     console.error(err);
+  }
+};
+
+exports.checkCookie = (req, res) => {
+  try {
+    if (req.cookies.jwt) {
+      res.redirect("../bug/");
+    }
+  } catch (err) {
+    next(err);
   }
 };

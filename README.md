@@ -1,3 +1,7 @@
+# Please read
+As this app is deployed to render to the free plan it spins down the server if it hasnt been used within an hour so please give it 30 seconds to a minute to spin up the server. 
+
+
 # Bug Tracking App
 
 This is a Bug tracking App where a group of developers or a company can record their bugs on a system where they can keep track of the type of bugs and how critical the bugs are. The application is a crud system where users can log in as an admin or user, they can create bug to display to all the developers or have private bugs that they need to fix themselves. The user can filter and sort bugs to their liking as well as add comments under bugs.

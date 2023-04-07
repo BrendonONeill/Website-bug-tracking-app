@@ -4,7 +4,7 @@
         <% if(typeof message !== 'undefined'){ %>
         <div class="error-message"><%= message %></div> 
         <% } %>
-        <form action="https://bug-tracker.onrender.com/user/login" method="post" >
+        <form action="http://localhost:3000/user/login" method="post" >
             <label class="label-styles-login" for="email">Email</label><br>
             <input class="custom-input-login" type="email" id="email" name="email" required><br>
             <label class="label-styles-login" for="password">Password</label><br>

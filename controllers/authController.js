@@ -24,7 +24,7 @@ exports.loginIn = async (req, res, next) => {
   }
 };
 
-//This is created to give the jwt time to be set up in the cookie before it it checked by the logined check
+//This is created to give the jwt time to be set up in the cookie before it it checked by the login check
 exports.justloggedin = async (req, res, next) => {
   try {
     res.redirect("../bug/");
@@ -44,7 +44,7 @@ const createCookieToken = (user, statusCode, res) => {
   const token = signJWTToken(user._id);
   const cookieOptions = {
     expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
-    httpOnly: true
+    //httpOnly: true,
   };
   cookieOptions.secure = true;
   res.cookie("jwt", token, cookieOptions);
@@ -85,11 +85,11 @@ exports.loginedCheck = async (req, res, next) => {
     err.message = "testing";
     res.cookie("jwt", "accessdenided", {
       expires: new Date(Date.now() + 10 * 1000),
-      httpOnly: true,
+      //httpOnly: true,
     });
     res.cookie("user", "accessdenided", {
       expires: new Date(Date.now() + 10 * 1000),
-      httpOnly: true,
+      //httpOnly: true,
     });
 
     next(err);
@@ -100,11 +100,11 @@ exports.loginedCheck = async (req, res, next) => {
 exports.logout = (req, res) => {
   res.cookie("jwt", "loggedout", {
     expires: new Date(Date.now() + 10 * 1000),
-    httpOnly: true,
+    //httpOnly: true,
   });
   res.cookie("user", "loggedout", {
     expires: new Date(Date.now() + 10 * 1000),
-    httpOnly: true,
+    //httpOnly: true,
   });
   res.status(200).render("login/login");
 };
@@ -120,15 +120,5 @@ exports.levelOfLogin = (...admin) => {
     };
   } catch (err) {
     console.error(err);
-  }
-};
-
-exports.checkCookie = (req, res) => {
-  try {
-    if (req.cookies.jwt) {
-      res.redirect("../bug/");
-    }
-  } catch (err) {
-    next(err);
   }
 };

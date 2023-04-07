@@ -6,7 +6,7 @@ const bugController = require("./../controllers/bugController");
 
 // Login tabs and actions
 router.post("/login", authController.loginIn, authController.justloggedin);
-router.get("/login", authController.checkCookie, (req, res) => {
+router.get("/login", (req, res) => {
   res.render("login/login");
 });
 router.get("/logout", authController.logout);

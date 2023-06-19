@@ -25,6 +25,7 @@ https://bug-tracker.onrender.com/user/logout
 
 ### Working on
 
-Cleaning up backend code and cleaning up error handling.
-On deployment lots of bugs are happening compared to localhost need to investigate. 
-Going to rewrite in next.js. 
+- Coverting to next.js from ejs and express 
+- Cleaning up a new UI for the app
+- Add new features
+- clean up backend with better code 

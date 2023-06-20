@@ -28,4 +28,5 @@ https://bug-tracker.onrender.com/user/logout
 - Coverting to next.js from ejs and express 
 - Cleaning up a new UI for the app
 - Add new features
-- clean up backend with better code 
+- clean up backend with better code
+- Researching Next JS struture

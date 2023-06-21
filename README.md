@@ -30,3 +30,5 @@ https://bug-tracker.onrender.com/user/logout
 - Add new features
 - clean up backend with better code
 - Researching Next JS struture
+- Might use prism over mongodb
+- Improve Auth

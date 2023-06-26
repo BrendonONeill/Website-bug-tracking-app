@@ -32,3 +32,8 @@ https://bug-tracker.onrender.com/user/logout
 - Researching Next JS struture
 - Might use prism over mongodb
 - Improve Auth
+  
+### Progress
+- Have mongoose working with nex.js
+- have calls for bugs working
+- (massive bug happened on create need to look into what happened)
